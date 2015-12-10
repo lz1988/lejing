@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>微信充值</title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"/><!--公共css代码 自适应宽度-->
+    <link href="css/subpage.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<form name="form" method="post" action="">
+<div class="header">
+    <h1>微信充值</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <div class="wx_pay">
+        <h2>微信充值</h2>
+        <p>请选择充值金额（元）</p>
+    </div>
+    <div class="order_number" >
+        <ul  id="radiolist" class="radiolist" >
+            <li data-id="100">充100送30</li>
+            <li data-id="500"> 充500送100</li>
+        </ul>
+    </div>
+    <input type="hidden" name="amount" id="amount" value="0"/>
+    <div class="pay_submit">
+        <input type="submit" class="Ok" value="确认充值" />
+    </div>
+</div><!--main 结束 -->
+</form>
+<script src="__PUBLIC__/Home/js/moneySelect.js"></script><!--充值选择JS -->
+<script>
+    $(function(){
+        $(".Ok").click(function(){
+            var _amount = $("#amount").val();
+            if (_amount == 0)
+            {
+                alert('请选择充值的金额');
+                return false;
+            }
+        })
+    })
+</script>
+</body>
+</html>
+

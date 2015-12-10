@@ -1,0 +1,102 @@
+<link href="__ROOT__/Public/Admin/css/list.css" rel="stylesheet" type="text/css" />
+<script src="__ROOT__/Public/Admin/js/jquery-1.6.js" type="text/javascript"></script>
+<div class="currentposition">
+    <div>{$cur_menu} > {$cur_title}</div>
+</div>
+<div class="addclass">
+<div class="addtopheight">&nbsp;</div>
+<table width="100%" class="addsearchClass" id="tableClass" border="0" cellpadding="0" cellspacing="0">   
+<form name="form1" id="form1" method="POST" action=""> 
+   <input type="hidden" name="user_id" value="{$info['user_id']}" />
+    <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">用户名：</td>
+       <td width="80%" ><input type="text" name="username" value="{$info.username}"/></td>
+   </tr>
+
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">密码：</td>
+       <td width="80%" ><input type="text" name="password" value="{$info.password}"/></td>
+   </tr>
+
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">所属门店：</td>
+       <td width="80%" >
+        <volist name="shoparr" id="vo" mod="5">
+       <!--  <if condition="in_array($vo.shop_id,$usershoparr)" >
+          <input type="checkbox" name="shop_id[]" checked="checked" value="{$vo.shop_id}"/>
+          <else/>
+          <input type="checkbox" name="shop_id[]" value="{$vo.shop_id}"/>
+        </if> -->
+            <in name="vo.shop_id" value="$usershoparr">
+			<input type="checkbox" name="shop_id[{$vo.shop_id}]" checked="checked" value="{$vo.shop_id}"/> <a href="__APP__/rolemain/setmode/userid/{$userId}/shopid/{$vo.shop_id}" title="权限设置">{$vo.shop_name}</a>
+            </in>
+            <notin name="vo.shop_id" value="$usershoparr">            
+              <input type="checkbox" name="shop_id[{$vo.shop_id}]" value="{$vo.shop_id}"/>{$vo.shop_name}
+            </notin>
+           
+        <eq name="mod" value="4"></eq>  所占比例：<input type="text" name="bili[{$vo.shop_id}]" value="<?php echo $biliarr[$vo['shop_id']]?>" style="width:60px;height:26px;"/> %
+            <br/>
+      
+      </volist>
+      </td>
+   </tr>
+    
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">姓名：</td>
+       <td width="80%" ><div style="float:left;"><input type="text" name="nickname" value="{$info.nickname}" /></td>
+   </tr>
+
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">级别：</td>
+       <td width="80%" ><div style="float:left;">
+        <select name="roleid">
+          <volist name="rolearr" id="vo">
+            <option value="{$vo.role_id}" <if condition="$vo.role_id eq $info['role_id']"> selected </if>>{$vo.role_name}</option>
+          </volist>
+        </select>
+       </td>
+   </tr>
+
+    <tr>
+        <td width="10%" height="30" align="right" class="left_txt2">职务：</td>
+        <td width="80%" ><div style="float:left;"><input type="text" name="zhiwu" value="{$info.zhiwu}" /></td>
+    </tr>
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">性别</td>
+       <td width="80%" > 
+          <input type="radio" name="sex" value="0" <if condition="$info['sex'] eq '0'">checked </if>/>男
+          <input type="radio" name="sex" value="1" <if condition="$info['sex'] eq '1'">checked </if>/>女&nbsp;&nbsp;&nbsp;&nbsp;
+       </td>
+   </tr>
+
+    <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">手机：</td>
+       <td width="80%" ><div style="float:left;"><input type="text" name="mobile" value="{$info.mobile}" /></td>
+   </tr>
+
+    <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">qq：</td>
+       <td width="80%" ><div style="float:left;"><input type="text" name="qq" value="{$info.qq}" /></td>
+   </tr>
+
+    <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">状态</td>
+       <td width="80%" > 
+          <input type="radio" name="status" value="0" <if condition="$info['status'] eq '0'">checked </if>/>在职
+          <input type="radio" name="status" value="1" <if condition="$info['status'] eq '1'">checked </if>/>离职
+       </td>
+   </tr>
+   
+   <tr>
+       <td colspan="2">
+          <div class="addoperation">
+          <input type="submit" class="buttonsave" value="保存" name="sub_authority" />
+          &nbsp;
+          <input type="reset" class="buttoncancel" value="取消" onclick="window.location.href = '__APP__/member/index_member';" name="B12" />
+          </div>
+       </td> 
+   </tr>
+</form>
+</table>
+<div>&nbsp;</div>
+</div>

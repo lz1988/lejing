@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>微信支付</title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"/><!--公共css代码 自适应宽度-->
+    <link href="css/subpage.css"  rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {$jsApiParameters},
+                    function(res){
+                        WeixinJSBridge.log(res.err_msg);
+                        //alert(res.err_code+res.err_desc+res.err_msg);
+                        if(res.err_msg == "get_brand_wcpay_request:ok"){
+                            //alert(res.err_code+res.err_desc+res.err_msg);
+                            window.location.href="http://mixi.cssizhan.com/user/order_success";
+                        }else{
+                            //返回跳转到订单详情页面
+                            alert('支付失败');
+                            window.location.href="http://mixi.cssizhan.com/item/item_list";
+
+                        }
+                    }
+            );
+        }
+
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+    </script>
+</head>
+<body>
+<!--<div class="header">
+    <h1>微信支付</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div>--><!--页眉 结束-->
+<div class="main">
+    <div class="wx_pay">
+        <h2>微信支付</h2>
+    </div>
+    <div class="order_number">
+        <h3>堂食订单号：<span>{$orders_list.orders_no}</span></h3>
+        <p>点单时间：<span>{$orders_list.create_time|date="Y/m/d H:i:s",###}</span></p>
+    </div>
+    <div class="order_info">
+        <ul>
+            <foreach name="oi_list" item="vo">
+            <li>{$vo.item_name}/{$vo.buy_num}份*{$vo.buy_price}元</li>
+            </foreach>
+        </ul>
+        <div class="order_info_count">
+            <p>{$total_num}件商品</p>
+            <p>共计<span>{$total_price}</span>元</p>
+        </div>
+    </div>
+    <div class="pay_box">
+        <input type="text" value="使用外卖代金券" onFocus="if(value==defaultValue){value='';this.style.color='#313131'}" onBlur="if(!value){value=defaultValue;this.style.color='#b5b5b5'}"/>
+        <div class="ui_btn">
+            <a href="javascript:void(0);" onclick="callpay()" >支付订单</a>
+            <a href="/user/my_orders/orders_id/{$orders_list.orders_id}">返回&nbsp;&nbsp;我的订单</a>
+        </div>
+    </div>
+</div><!--main 结束 -->
+<footer>
+    <ul class="H_bottom">
+        <li><a href="#"  class="menu onLight"></a></li>
+        <li><a href="#" class="cart"></a></li>
+        <li><a href="#" class="order"></a></li>
+        <li><a href="#" class="mxg"></a></li>
+    </ul>
+    <a class="backUp" href="#"></a>
+</footer><!--页尾 结束-->
+</body>
+</html>
+

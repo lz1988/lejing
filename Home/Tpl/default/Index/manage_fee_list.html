@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】 &nbsp;&nbsp; <a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+	
+	<table border="1" width="100%">
+	<tr>
+	<td>日期</td>
+	<td>分店名称</td>
+	<td>保险费用</td>
+	<td>办公费</td>
+	<td>通讯费</td>
+	<td>差旅费</td>
+	<td>福利费</td>
+	<td>招待费</td>
+	<td>车辆使用</td>
+	<td>培训及咨询费</td>
+	<td>证照费用</td>
+	<td>质检年检</td>
+	<td>公关费用</td>
+	<td>折旧及摊销</td>
+	<td>管理服务</td>
+	<td>公摊费用</td>
+	<td>其他</td>
+        <td>汇总</td>
+	</tr>
+	<volist name="arr" id="vo">
+	<tr>
+	<td>{$vo.input_date}</td>
+	<td>{$vo.shop_name}</td>
+	<td>{$vo.baoxian_fee}</td>
+	<td>{$vo.bangong_fee}</td>
+	<td>{$vo.tongxun_fee}</td>
+	<td>{$vo.chailv_fee}</td>
+	<td>{$vo.fuli_fee}</td>
+	<td>{$vo.zhaodai_fee}</td>
+	<td>{$vo.car_fee}</td>
+	<td>{$vo.peixun_fee}</td>
+	<td>{$vo.zhengjian_fee}</td>
+	<td>{$vo.zhijian_fee}</td>
+	<td>{$vo.gongguan_fee}</td>
+	<td>{$vo.zhejiu_fee}</td>
+	<td>{$vo.guanli_fee}</td>
+	<td>{$vo.gongtan_fee}</td>
+	<td>{$vo.qita_fee}</td>
+        <td>{$vo.sum}</td>
+ 	</tr>
+	</volist>
+	
+	</table>
+</section>
+</body>
+</html>

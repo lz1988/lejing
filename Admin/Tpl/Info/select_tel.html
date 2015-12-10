@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$cur_title}</title>
+<meta name="author" content="OEdev">
+<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+<script src="__ROOT__/Public/Admin/js/public.js"></script>
+<script src="__ROOT__/Public/Admin/js/DatePicker/WdatePicker.js" type="text/javascript"></script> 
+<link type="text/css" rel="stylesheet" href="__ROOT__/Public/Admin/css/admin.css">
+<script  src="__PUBLIC__/Admin/js/jquery.ocupload-1.1.2.js"></script>
+
+<script src="__PUBLIC__/Admin/js/jquery.dragndrop.js"></script>  
+
+<script src="__PUBLIC__/Admin/js/jquery.msgbox.js"></script>   
+
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.msgbox.css"/>  
+
+<script>
+function sele_tpl(id,title){
+	var item = new Array();
+	item[0]=id;
+	item[1]=title;
+    window.returnValue =item;
+    window.close();
+}
+
+    
+</script>
+</head>
+<body>
+<div class="main-wrap">
+  <div class="path"><p>{$cur_menu}</p></div>
+  
+  <div class="main-cont">
+    <h3 class="title">
+        {$cur_title}
+	</h3>
+	<div class="search-area ">
+	<form id="" name="formfind" action="" method="GET">
+	<div class="item">
+	<label>图文管理 ｜ +<a href="__APP__/Code/info_add">新建图文</a></label>
+	
+	</div>
+	
+	</form>
+	</div>
+	<form action="" method="POST" name="orgtype" />
+	<foreach name="info_list" item="list">
+	<table width="300" border="0" cellpadding="0" cellspacing="0" class="table" style="width:280px;height:300px;float:left;margin:20px;" align="center">
+	  <thead class="tb-tit-bg">
+	  <tr height="10">
+	    <th width="100%">
+		    <div class="th-gap" style="height:10px;line-height:10px;">
+		    <eq name="list.type_id" value="1">图文消息<else />文字消息</eq>
+		    <a href="javascript:void(0)" onclick="sele_tpl({$list.id},'{$list.title}')">选择</a>
+		    </div>
+	    </th>
+	  </tr>
+	  <tr>
+	    <th width="100%">
+		    <div class="th-gap" style="height:20px;line-height:20px;">
+		    {$list.title}
+		    </div>
+	    </th>
+	  </tr>
+	  <eq name="list.type_id" value="1">
+	  <tr>
+	    <th width="100%">
+		    <img src="{$list.images}" width="270" />
+	    </th>
+	  </tr>
+	  </eq>
+	  <tr>
+	    <th width="100%">
+	    <div class="th-gap" style="">
+		    {$list.content}
+		</div>
+	    </th>
+	  </tr>
+	  </thead>
+	</table>
+	</foreach>
+	</div>
+</div>
+
+</body></html>

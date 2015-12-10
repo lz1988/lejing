@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>微信充值</title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"/><!--公共css代码 自适应宽度-->
+    <link href="css/subpage.css"  rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {$jsApiParameters},
+                    function(res){
+                        WeixinJSBridge.log(res.err_msg);
+                        //alert(res.err_code+res.err_desc+res.err_msg);
+                        if(res.err_msg == "get_brand_wcpay_request:ok"){
+                            //alert(res.err_code+res.err_desc+res.err_msg);
+                            window.location.href="http://mixi.cssizhan.com/user/user_recharge_success";
+                        }else{
+                            //返回跳转到订单详情页面
+                            alert('支付失败');
+                            window.location.href="http://mixi.cssizhan.com/item/item_list";
+
+                        }
+                    }
+            );
+        }
+
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <h1>微信充值</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <!--<div class="wx_pay">
+        <h2>微信充值</h2>
+        <p>请选择充值金额（元）</p>
+    </div>
+    <div class="order_number" >
+        <ul  id="radiolist" class="radiolist" >
+            <li>充100送30</li>
+            <li> 充500送100</li>
+        </ul>
+    </div>-->
+    <div class="pay_submit">
+        <a href="javascript:void(0);" onclick="callpay()" class="Ok">微信充值</a>
+    </div>
+</div><!--main 结束 -->
+<script src="__PUBLIC__/Home/js/moneySelect.js"></script><!--充值选择JS -->
+</body>
+</html>
+

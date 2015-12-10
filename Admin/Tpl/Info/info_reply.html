@@ -1,0 +1,105 @@
+  <!--内容-->
+  <div class="msg_right_con">
+      <div class="right_con_tit">
+          <div class="right_tit_left">
+              <span class="right_titip">消息管理</span>
+          </div>
+          
+      </div>
+	  <form id="" name="formfind2" action="" method="POST">
+	  <input type="hidden" name="openid" value="{$Think.get.openid}" />
+	  <input type="hidden" name="admin_id" value="{$arr.admin_id}" />
+      <!--表格-->
+      <div class="right_mians">
+      <table cellpadding="0" cellspacing="0" border="0"  width="100%" class="ls_tbx" >
+          
+          <tr>
+          	<td>
+            	
+            	<div class="dope_subnav">
+                	<span class="dope_tips">发送对象</span>
+                	<span class="sleBG">
+  						{$Think.get.username}
+  					</span>
+                </div>
+            </td>
+          </tr>
+         
+      </table>
+      </div>
+    	<div class="mge_contips">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+			<td colspan="2">
+			<div class="mboxs">
+				<div class="ref_box">
+					<textarea class="ref_tex" id="send_content" name="send_content" onblur="setnum(this.value)" onkeydown="setnum(this.value)"></textarea>	
+					<div class="bxcon_lists">
+						<input type="submit" name="send"  class="bxup" value="发送"/>
+						<span class="bxcon_lists_right">
+                        	<span id="setnum"></span>
+                        </span>
+					</div>
+				</div>		
+			</div>
+			</td>
+		</tr>
+        <foreach name="reply_list" item="list">
+        <tr>
+			<td colspan="2">
+			<div class="mboxs">
+				<eq name="list.reply_openid" value="">{$Think.get.username}:<else />回复:</eq>
+				{$list.content}
+			</div>
+			</td>
+		</tr>
+        </foreach>
+	</table>
+    </form>
+	</div>
+  </div>
+  <script type="text/javascript">
+  function setnum(val){
+  	 var num=600-val.length;
+  	 if(num<=0){
+  	 	val=val.substring(0,600);
+  	 	$('#send_content').val(val);
+  	 }
+  	 $('#setnum').html('还可以输入'+num+'字');
+  }
+  </script>
+  
+<script type="text/javascript" src="__PUBLIC__/js/jquery.ocupload-1.1.2.packed.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+	//上传影片海报图片   
+	var posterUpload=$('#btn_upload').upload({    
+		name: 'upload_poster',         
+		action: "{:U('Common/uploadPosterPhoto')}",		
+		enctype: 'multipart/form-data',                
+		autoSubmit: true,
+		onSelect:function(){
+			if($('#img_poster').val()!='__TMPL__images/user_big.png'){
+				//this.params({del_img:$('#img_poster').val()});
+		    }
+			else{
+				//this.params({del_img:''});
+			}
+		},
+		onComplete: function(data) {
+			data = $.parseJSON(data);
+			if(data.status==1){			
+				bindPoster(data.data);
+			}
+			else{
+				alert(data.info);
+			}
+		}
+	});	
+}); 
+//显示上传的影片海报图片	
+var bindPoster = function(src){
+	$('#img_poster').attr('src',src);
+	$('#logo').val(src);
+};
+</script>

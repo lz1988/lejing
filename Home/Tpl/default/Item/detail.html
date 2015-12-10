@@ -1,0 +1,141 @@
+<!--<div class="header">
+    <h1>{$res.item_name}</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div>--><!--页眉 结束-->
+<div class="main">
+    <div class="banner">
+        <!-- 代码 开始 -->
+        <div class="slide_container">
+            <ul class="rslides" id="slider">
+                <foreach name="img_list" item="list">
+                <li>
+                    <img src="{$list.img_path}" alt="">
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <!-- 代码 结束 -->
+    </div><!--banner 结束 -->
+    <div class="shop_name">
+        <h2>{$res.item_name}<span>￥{$res.item_price}</span></h2>
+        <div style="clear:both"></div>
+    </div>
+    <div class="shop_content">
+        <p>{$res.detail}</p>
+        <dl class="buy_cart">
+            <dt>购买份数：</dt>
+            <dd>
+                <a href="javascript:void(0);" class="cut">-</a>
+                <input type="text" value="1" class="Number"/>
+                <a href="javascript:void(0);" class="add">+</a>
+            </dd>
+        </dl>
+        <div style="clear:both"></div>
+        <div class="ui_btn">
+            <input type="hidden" name="shop_id" value="{$res.shop_id}"/>
+            <a href="javascript:void(0);" onclick="add_cart()">立即购买</a>
+            <a href="javascript:buy();">加入订单</a>
+            <!--<a href="#">分享到朋友圈</a>-->
+        </div>
+    </div>
+</div><!--main 结束 -->
+<script>
+    $(function(){
+       var num = $(".Number");
+
+       //产品数量加减
+       $(".add").click(function(){
+           num.val(parseInt(num.val()) + 1);
+           var number = $(".Number").val();
+
+           $.ajax({
+               url: "{:U('item/check_num')}",
+               type: "post",
+               dataType: "json",
+               data: "item_id={$Think.get.item_id}&number="+number,
+               success: function(data) {
+                   if (data.status == '-1'){
+                        $(".Number").val(data.data-1);
+                        alert(data.info);
+                   }
+               }
+           });
+       })
+
+        $(".cut").click(function(){
+            if (parseInt(num.val()) == 1){
+                $(this).attr("disabled",true);
+            }else{
+                num.val(parseInt(num.val() - 1));
+            }
+        })
+    });
+    //加入购物车
+    function add_cart(){
+        var num = $(".Number").val();
+        $.ajax({
+            url: "{:U('item/add_cart')}",
+            type: "post",
+            dataType: "json",
+            data: "item_id={$Think.get.item_id}&number="+num,
+            success: function(data) {
+                alert(data.info);
+                //$('#tsinfo').html(data.info);
+                //$('.msg_layer').show();
+                if(data.status==1){
+                    //var item_num=parseInt($('.item_num').text());
+                    //$('.item_num').html(item_num+1)
+                    if(ctype=='yes'){
+                        //document.location="{:U('Item/cart')}";
+                    }else{
+                        //alert(data.info);
+                    }
+                }else{
+                    //alert(data.info);
+                }
+            },
+            cache: false,
+            timeout: 5000,
+            error: function() {
+                alert("错误");
+            }
+        });
+    }
+
+    //加入订单
+    function buy(){
+        var num = $(".Number").val();
+        $.ajax({
+            url: "{:U('item/add_cart')}",
+            type: "post",
+            dataType: "json",
+            data: "item_id={$Think.get.item_id}&number="+num,
+            success: function(data) {
+                //alert(data.info);
+                //$('#tsinfo').html(data.info);
+                //$('.msg_layer').show();
+                if(data.status == 1){
+                    //var item_num=parseInt($('.item_num').text());
+                    //$('.item_num').html(item_num+1)
+                   /* if(ctype=='yes'){
+                        //document.location="{:U('Item/cart')}";
+                    }else{
+                        //alert(data.info);
+                    }*/
+                    location.href = '/item/consignee';
+                }else{
+                    alert(data.info);
+                }
+            },
+            cache: false,
+            timeout: 5000,
+            error: function() {
+                alert("错误");
+            }
+        });
+    }
+
+
+</script>

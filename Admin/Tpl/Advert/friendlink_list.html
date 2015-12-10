@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>{$cur_title}</title>
+<meta name="author" content="OEdev">
+<script src="__ROOT__/Public/Admin/js/jquery-1.6.js"></script>
+<script src="__ROOT__/Public/Admin/js/public.js"></script>
+<script src="__ROOT__/Public/Admin/js/DatePicker/WdatePicker.js" type="text/javascript"></script> 
+<link type="text/css" rel="stylesheet" href="__ROOT__/Public/Admin/css/admin.css">
+</head>
+<body>
+<div class="main-wrap">
+  <div class="path"><p>{$cur_menu}</p></div>
+  
+  <div class="main-cont">
+    <h3 class="title">
+	<a href="__APP__/Friendlink/friendlink_add/" class="btn-general" {$friendlink_add}><span>添加友情链接</span></a>
+	
+	{$cur_title}
+	</h3>
+	<div class="search-area ">
+	<form id="" name="formfind" action="" method="GET">
+	<div class="item">
+	<label>网站名称：</label>
+	<input type="text" class="input-150" name="link_name" value="{$link_name}" id="link_name" />
+	<label>状态：</label>
+	 <select name="status" id="status" />
+          <option value="2" <if condition="$status eq 2">selected</if>>--全部--</option>
+          <option value="1" <if condition="$status eq 1">selected</if>>开启</option>
+	      <option value="0" <if condition="$status eq 0">selected</if>>关闭</option> 
+    </select>&nbsp;&nbsp;
+	
+	<input class="button_s" type="submit" name="findsub" value="搜 索">
+	<input class="button_s" type="button" name="findsub" value="显示所有" onclick="document.location='__APP__/{$cur_url}'">
+	</div>
+	</form>
+	</div>
+	<form action="" method="POST" name="orgtype" />
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table" align="center">
+	  <thead class="tb-tit-bg">
+	  <tr>
+	    <th width="3%"><div class="th-gap">ID</div></th>
+	    <th width="9%"><div class="th-gap">网站名称</div></th>
+		<th width="14%"><div class="th-gap">链接URL</div></th>
+		<th width="9%"><div class="th-gap">logo</div></th>
+		<th width="6%"><div class="th-gap">站长名称</div></th>
+		<th width="3%"><div class="th-gap">状态</div></th>
+		<th width="6%"><div class="th-gap">排序</div></th>
+		<th width="12%"><div class="th-gap">操作</div></th>
+	  </tr>
+	  </thead>
+	  <tfoot class="tb-foot-bg"></tfoot>
+	  <tbody  id="tableClass">
+	  <foreach name="friendlink_list" item="name">
+	  <tr onmouseover="overColor(this)" onmouseout="outColor(this)">
+	    <td align="left" class="hback">
+	       <input type="checkbox" <?php if(in_array($name['link_id'],$notdel) OR $notdel=='ALL'){echo "disabled";} ?>  value="{$name.link_id}" name="link_id[]">{$name.link_id}
+	    </td>
+	    <td align="center" class="hback"><a href="__APP__/Friendlink/friendlink_edit/{$name.link_id}/">{$name.link_name}</a></td>
+	    <td align="center" class="hback">{$name.link_url}</td>
+	    <td align="center" class="hback"><a href="{$advertimgurl}{$name.logo}" target="_blank"><img src="{$advertimgurl}{$name.logo}" width="200" height="50" /></a></td>
+	    <td align="center" class="hback">{$name.ads_name}</td>
+	    <td align="center" class="hback">
+	    <if condition="($name['status'] eq '1')">
+			<img id="flag8" alt="有效" src="__ROOT__/Public/Admin/images/yes.gif" onclick="javascript:fetch_ajax(&#39;flag&#39;,&#39;8&#39;);" style="cursor:pointer;">	
+			<else />
+			<img id="flag8" alt="无效" src="__ROOT__/Public/Admin/images/no.gif" onclick="javascript:fetch_ajax(&#39;flag&#39;,&#39;8&#39;);" style="cursor:pointer;">	
+	    </if>
+	    </td>
+	    <td align="center" class="hback"><input type="hidden" name="sortid[]" value="{$name.link_id}" /><input type="text" class="textcenter" name="sort[]" value="{$name.sort}" size="3" /></td>
+	  
+		<td align="center" class="hback">
+		<!-- 添加子栏目 -->
+			<a href="__APP__/Friendlink/friendlink_edit/{$name.link_id}/" class="icon-edit" {$friendlink_edit}>编辑</a>
+			&nbsp;
+			<a {$friendlink_del} href="__APP__/Friendlink/friendlink_del/{$name.link_id}/" onclick="{if(confirm(&#39;确定要删除吗？一旦删除无法恢复！&#39;)){return true;} return false;}" class="icon-del" <?php if(in_array($name['link_id'],$notdel) OR $notdel=='ALL'){echo "style='display:none;'";} ?>>删除</a>
+			 
+		</td>
+	  </tr>
+	  </foreach>
+	  	   
+	  <tr>
+	    <td align="center" colspan="" class="hback"><input type="checkbox" name="del_idall" onclick="check_all('user_id');" value=""/>选择</td>
+	    <td align="left" colspan="7" class="hback">
+	       <input type="button" class="button" {$friendlink_upall} value="更新" onclick="check_from('更新','__APP__/Friendlink/friendlink_upall/')" name="upall" id="upall"/>
+	       <input {$friendlink_del} type="button" class="button" value="删除" onclick="check_from('删除','__APP__/Friendlink/friendlink_del/')" name="delall" id="delall"/>
+	   </td>
+	    
+	  </tr>	
+	   
+	  	</tbody></table>
+	  </form>
+		<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin-top:10px;">
+	  <tbody><tr>
+		<td align="center" class="page">{$page}</td>
+	  </tr>
+	</tbody></table>
+	  </div>
+</div>
+</body></html>

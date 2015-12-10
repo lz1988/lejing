@@ -1,0 +1,95 @@
+  <!--内容-->
+  <div class="msg_right_con">
+      <div class="right_con_tit">
+          <div class="right_tit_left">
+              <span class="right_titip">消息管理</span>
+              <span class="right_titip1">向客户群发消息或查看已发送消息</span>
+          </div>
+          
+          <!--时间-->
+          <div class="right_tit_right">
+              <div class="right_tit_date">
+                  <span class="date_week">{$week}&nbsp;</span>
+                  <span class="date_week_num">{$date_d}&nbsp;<span class="date_week">{$date_m}月</span></span>
+              </div>
+              <div class="right_tit_time">
+                  <span class="date_week_afte">PM</span>
+                  <span class="date_week_time">{$date_h}</span>
+              </div>
+          </div>
+      </div>
+
+      <!--表格-->
+      <div class="right_mians">
+      <table cellpadding="0" cellspacing="0" border="0"  width="100%" >
+          <tr>
+              <td style="border-bottom:2px solid #d6d6d6;">
+                  <div class="dope_nav">
+					<ul>
+						<li><a <eq name="Think.get.type_id" value="">class="dope_nav_info"</eq> href="__APP__/info/info_list">已发送消息<span><eq name="Think.get.type_id" value="">{$count}</eq></span></a></li>
+                        <li><a <eq name="Think.get.type_id" value="2">class="dope_nav_info"</eq> href="__APP__/info/info_list/type_id/2">客户消息<span><eq name="Think.get.type_id" value="2">{$count}</eq></span></a></li>
+                        <li><a href="{:U('Info/info_send')}">群发消息</a></li>
+                        <li><a href="{:U('Info/sms_send')}">短信编辑</a></li>
+                    </ul>
+                  </div>
+              </td>
+          </tr>
+          <tr>
+          	<td>
+            	<div class="dope_subnav">
+                	<ul>
+                    	<li><a href="__APP__/info/info_list/type_id/{$Think.get.type_id}" <eq name="Think.get.date" value="">class="dope_subnav_info"</eq>>全部消息</a></li>
+                        <li><a href="__APP__/info/info_list/date/0/type_id/{$Think.get.type_id}" <eq name="Think.get.date" value="0">class="dope_subnav_info"</eq>>今天</a></li>
+                        <li><a href="__APP__/info/info_list/date/-1/type_id/{$Think.get.type_id}" <eq name="Think.get.date" value="-1">class="dope_subnav_info"</eq>>昨天</a></li>
+                        <li><a href="__APP__/info/info_list/date/-2/type_id/{$Think.get.type_id}" <eq name="Think.get.date" value="-2">class="dope_subnav_info"</eq>>前天</a></li>
+                        <li><a href="__APP__/info/info_list/date/-3/type_id/{$Think.get.type_id}" <eq name="Think.get.date" value="-3">class="dope_subnav_info"</eq>>更早</a></li>
+                    <!--    <li><a href="#">星标消息</a></li>-->
+                	</ul>
+                </div>
+            </td>
+          </tr>
+      </table>
+      </div>
+      <div class="msg_dope_con">
+      	<table>
+        	<tr>
+            	<td height="35" align="left">
+                	<span>全部消息（只保存最近5天的消息）</span>
+                    <span><input type="checkbox" class="tit_cb"/><span>隐藏关键词消息</span></span>
+                </td>
+            </tr>
+        </table>
+      </div>
+    	<div class="mge_con">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<foreach name="info_list" item="list">
+		<tr>
+                <td width="90" align="center">
+					<div class="tbhead">
+						<img src="{$list.logo}" width="62" height="62" />
+					</div>
+				</td>
+                <td align="left">
+					<div class="prop_con">
+                    	<div class="prop_con_tit">
+							<span>{$list.admin_name}</span>
+							<a href="__APP__/info/info_reply/id/{$list.id}" onclick="show()"><img src="__TMPL__images/ico_8.png" width="16" height="16" title="回复" /></a>
+                        </div>
+                        <div class="prop_con_mian">
+                            {$list.content}
+                        </div>
+					</div>
+					<span class="point_time">{$list.create_time|date="Y-m-d H:i",###}</span>
+                </td>
+        </tr>
+		</foreach>
+            
+	</table>
+
+	</div>
+    <div class="msg_page">
+      	<div class="page_mian">
+            {$page}
+        </div>
+      </div>
+  </div>

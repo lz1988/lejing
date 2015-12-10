@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统-管理费用</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】 &nbsp;&nbsp; <a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+	
+	<table border="1" width="100%">
+	<tr>
+	<td>日期</td>
+	<td>分店名称</td>
+	<td>营业收入</td>
+	<!-- <td>其他业务收入</td> -->
+	<td>公允价值变动收益</td>
+	<td>营业外收入</td>
+	<td>公司补贴收益</td>
+	<td>加盟预算返还</td>
+        <td>汇总</td>
+	</tr>
+	<volist name="arr" id="vo">
+	<tr>
+	<td>{$vo.input_date}</td>
+	<td>{$vo.shop_name}</td>
+	<td>{$vo.shouru}</td>
+	<!-- <td>{$vo.other_price}</td> -->
+	<td>{$vo.price_change}</td>
+	<td>{$vo.operating_income}</td>
+	<td>{$vo.subsidy_income}</td>
+	<td>{$vo.return_amount}</td>
+        <td>{$vo.sum}</td>
+ 	</tr>
+	</volist>
+	</table>
+</section>
+</body>
+</html>

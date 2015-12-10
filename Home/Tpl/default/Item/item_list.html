@@ -1,0 +1,49 @@
+<div class="main">
+    <div class="banner">
+        <!-- 代码 开始 -->
+        <div class="slide_container">
+            <ul class="rslides" id="slider">
+                <volist name="rs" id="vo">
+                <li>
+                    <img src="{$vo.lunbo_images}" alt="">
+                </li>
+                </volist>
+
+            </ul>
+        </div>
+        <!-- 代码 结束 -->
+    </div><!--banner 结束 -->
+    <div style="clear:both"></div>
+<!--    <div class="food_box">
+        <h2 class="food_title">新品推荐</h2>
+        <ul class="new_food_list">
+            <foreach name="item_list" item="list">
+                <li><a href="{:U('item/detail',array('item_id'=>$list[item_id]))}"><div class="new_food_list_pic"><img src="{$list.icon}" ></div><div class="food_name">{$list.item_name}</div></a></li>
+            </foreach>
+        </ul>
+    </div> &lt;!&ndash;列表 结束 &ndash;&gt;--><!--{$Think.session.username}-->
+
+    <div class="food_box">
+       <!-- <h2 class="food_title">堂食推荐</h2>
+        <ul class="new_food_list">
+            <foreach name="item_list_tangshi" item="list">
+                <li><a href="{:U('item/detail',array('item_id'=>$list[item_id]))}"><div class="new_food_list_pic"><img src="{$list.icon}" ></div><div class="food_name">{$list.item_name}<span class="New-price">￥{$list.item_price}</span></div></a></li>
+            </foreach>
+        </ul>
+        <h2 class="food_title">外卖推荐</h2>
+        <ul class="new_food_list">
+            <foreach name="item_list_waimai" item="list">
+                <li><a href="{:U('item/detail',array('item_id'=>$list[item_id]))}"><div class="new_food_list_pic"><img src="{$list.icon}" ></div><div class="food_name">{$list.item_name}<span class="New-price">￥{$list.item_price}</span></div></a></li>
+            </foreach>
+        </ul>-->
+        <volist name="result" id="vo" k="key">
+        <h2 class="food_title">{$vo.type_name}</h2>
+        <ul class="new_food_list">
+            <volist name="vo.type_id" id="item">
+                <li><a href="{:U('item/detail',array('item_id'=>$item[item_id]))}"><div class="new_food_list_pic"><img src="{$item.icon}" ></div><div class="food_name">{$item.item_name}<span class="New-price">￥{$item.item_price}</span></div></a></li>
+            </volist>
+        </ul>
+        </volist>
+
+    </div> <!--列表 结束 -->
+</div>

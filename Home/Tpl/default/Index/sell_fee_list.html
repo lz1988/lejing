@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统-销售费用</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】 &nbsp;&nbsp; <a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+	
+	<table border="1" width="100%">
+	<tr>
+	<td>日期</td>
+	<td>分店名称</td>
+	<td>房租</td>
+	<td>转让进场</td>
+	<td>公关费用</td>
+	<td>水电卫生费</td>
+	<td>物业管理费</td>
+	<td>广告宣传</td>
+	<td>促销费</td>
+	<td>销售辅料</td>
+	<td>装修及维护</td>
+	<td>设备及维护</td>
+	<td>折旧及摊销</td>
+	<td>加盟费</td>
+	<td>品牌使用费</td>
+	<td>加盟商分成</td>
+	<td>其他</td>
+        <td>汇总</td>
+	</tr>
+	<volist name="arr" id="vo">
+	<tr>
+	<td>{$vo.input_date}</td>
+	<td>{$vo.shop_name}</td>
+	<td>{$vo.rent_money}</td>
+	<td>{$vo.transfer}</td>
+	<td>{$vo.pr_cost}</td>
+	<td>{$vo.shuidianweisheng_fee}</td>
+	<td>{$vo.wuye_fee}</td>
+	<td>{$vo.advertising_fee}</td>
+	<td>{$vo.cuxiao_fee}</td>
+	<td>{$vo.xiaoshoufuliao_fee}</td>
+	<td>{$vo.zhuangxiuweihu_fee}</td>
+	<td>{$vo.shebeiweihu}</td>
+	<td>{$vo.zhejiutuixiao}</td>
+	<td>{$vo.jiameng}</td>
+	<td>{$vo.pinpaishiyong_fee}</td>
+	<td>{$vo.jiameng_fee}</td>
+	<td>{$vo.qita}</td>
+        <td>{$vo.sum}</td>
+ 	</tr>
+	</volist>
+	
+	</table>
+</section>
+</body>
+</html>

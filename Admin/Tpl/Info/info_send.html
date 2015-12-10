@@ -1,0 +1,321 @@
+<meta charset="utf-8" />
+<script src="__ROOT__/Public/js/jquery-1.8.2.js" type="text/javascript"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/jquery.form.js"></script>
+<style>
+.text {
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.ax_check {
+	color: #333333;
+	font-family: "Arial Normal", "Arial";
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-align: left;
+	margin-right: 10px;
+	height:30px;
+} 
+.imgtu {
+	width: 672px;
+	height: 242px;
+	margin-right: 0.5px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	float:left;
+	background-color: #E4E4E4;
+	border:1px solid #E4E4E4;
+}
+
+.imgtu_title {
+    font-family: "微软雅黑 Regular","微软雅黑";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 30px;
+    left: 20px;
+    position: relative;
+    top: 20px;
+    width: 80px;
+	float:left;
+	background: #FFFFFF;//背景色  
+}
+.imgtu_title1 {
+    font-family: "微软雅黑 Regular","微软雅黑";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 30px;
+    left: 20px;
+    position: relative;
+    top: 20px;
+    width: 80px;
+	float:left;
+	background: #E4E4E4;//背景色  
+}
+.imgtu_con {
+	width: 680px;
+	height: 190px;
+	margin-top: 50px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	position: relative;
+	background-color: #FFFFFF;
+	border-left:1px solid #E4E4E4;
+}
+.imgtu_con_li {
+	width: 120px;
+	height: 150px;
+	padding-left:15px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	position: relative;
+	background-color: #FFFFFF;
+	float:left;
+}
+.imgtu_con_li_top {
+	width: 102px;
+	height: 102px;
+	top:20px;
+	position: relative;
+	border:1px solid #E4E4E4;
+}
+.imgtu_con_li_bottom {
+	width: 102px;
+	height: 50px;
+	margin-top:30px;
+	text-align: center;
+	position: relative;
+}
+.btn{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;*display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;*line-height:20px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background-color:#5bb75b;border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+.btn input {position: absolute;top: 0; right: 0;margin: 0;border: solid transparent;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+
+/*弹窗*/
+.r_bg{ width: 100%; height: 100%;position: fixed; top: 0; left: 0; z-index: 67; display: none;}
+.relation_box{width: 600px; height: auto;  margin: 0 auto; margin-top: 10%;  box-shadow: 0px 0px 15px #ddd}
+.relation_box .widget{width: 600px; height: auto;background: #f2f2f2 }
+.relation_box .widget-foot{ border: none;}
+.relation_box td span{ color: #ff0000}
+.relation_box table.table-bordered{ border-top: 1px solid #ddd}
+.s_top{ margin-top: 10px;}
+
+.relation_box .widget{ margin: 0 0;}
+.relation_box .form-group{ float: left;}
+.relation_box .col-lg-4{ width: 80px; padding-right: 0; padding-top: 5px;}
+.relation_box .col-lg-8{ width: 150px;}
+
+/*属性*/
+.attrblock{list-style-type:none;color: #333333;width:100%;}
+.attrblock li {width:100px; height:40px; line-height:40px; text-align:center;float:left;}
+.attrblock li label{padding:0; margin:0;}
+.attrblock li .cbox {width:25px;height:40px;float:left;}
+.attrblock li .cbox input{margin:0 0;}
+.attrblock li .gcolor{width:15px; height:15px; float:left; padding: 5px 0;}
+.attrblock li .itext{font-size:14px;font-style: normal;font-weight: 400;width:60px;float:left}
+</style>
+<link href="__ROOT__/Public/Admin/css/list.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__ROOT__/Public/Admin/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.css" />
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.js"></script>
+<script src="__ROOT__/Public/Admin/js/formvalidator/formValidator-4.1.1.js" type="text/javascript" charset="UTF-8"></script> 
+<script src="__ROOT__/Public/Admin/js/message/message_add.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+
+
+   KindEditor.ready(function(K) {
+			var editor1 = K.create('textarea[name="detail"]', {
+				cssPath : '__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.css',
+				uploadJson : '__ROOT__/Public/Admin/kindeditor/php/upload_json.php',
+				fileManagerJson : '__ROOT__/Public/Admin/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterBlur : function() {
+				this.sync();
+				K.ctrl(document, 13, function() {
+				K('form[name=myform]')[0].submit();
+				});
+				K.ctrl(this.edit.doc, 13, function() {
+				K('form[name=myform]')[0].submit();
+				});
+				}
+			});
+			prettyPrint();
+		});
+</script>
+
+<script type="text/javascript">
+    //上传图片
+	function img_upload(fileupload,showimgid,form){
+		var showimg = $('#'+showimgid);
+		if($("#"+form).length<=0){
+			$("#"+fileupload).wrap('<form id="'+form+'" action="{:U('Item/action')}" method="post" enctype="multipart/form-data"></form>');
+		}
+		
+    	$("#"+fileupload).unbind().change(function(){
+    		$('#'+form).ajaxSubmit({
+				dataType:  'json',
+				success: function(data) {
+					var img = "/Uploads/Item/"+data.pic;
+					if(fileupload=="fileupload0"){
+						showimg.html("<img src='"+img+"' style='width:620px;'>");
+					}else if(fileupload.indexOf("colorupload")>=0){
+						showimg.html("<img src='"+img+"' style='width:30px;height:30px;'>");
+					}else{
+						showimg.html("<img src='"+img+"' style='width:100px;height:100px;'>");
+					}
+					
+					$("#"+fileupload+"_pic").val(img);
+				},
+				error:function(xhr){
+					showimg.html("上传失败");
+				}
+			});
+		});
+	}
+
+	// 载入图片
+	function loadpic(id,pic,mode){
+		//alert(fileupload+showimg);
+		var showimg = $('#showimg'+id);
+		if(mode==1){
+			showimg.html("<img src='"+pic+"' style='max-width:620px;'>");
+		}else if(mode==2){
+			showimg.html("<img src='"+pic+"' style='width:100px;height:100px;'>");
+		}
+		$("#fileupload"+id+"_pic").val(pic);
+		
+	}
+	
+	
+</script>
+<div class="currentposition">
+    <div>{$cur_menu} > 消息群发</div>
+</div>
+<div class="addclass">
+<div class="addtopheight">&nbsp;</div>
+<form name="upload" id="upload" method="POST" onsubmit="return check_from()" action="" enctype="multipart/form-data"> 
+<table width="100%" class="addsearchClass" border="0" cellpadding="0" cellspacing="0">
+   <tr>
+       <td height="10" align="right" class="left_txt2">发送信息：</td>
+       <td>
+           <input type="radio" name="sele_info" onclick="sele_tel(0)" checked value="0" />自定义发送信息&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="radio" name="sele_info" onclick="sele_tel(1)" value="1" />选择图文模板
+       </td>
+   </tr>
+   
+   <tr>
+       <td height="10" align="right" class="left_txt2">群发对象：</td>
+       <td>
+           <select name="group_id" class="ref_sel">
+               <foreach name="group_list" item="list">
+               <option value="{$list.id}">{$list.name}</option>
+               </foreach>
+		   </select>
+       </td>
+   </tr>
+   
+   <tr class="zidingyi">
+       <td height="10" align="right" class="left_txt2">状态：</td>
+       <td>
+           <input type="radio" name="send_type" checked value="0" />文字&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="radio" name="send_type" value="1" />图文
+       </td>
+   </tr>
+   
+   <tr class="zidingyi">
+       <td width="10%" height="30" align="right" class="left_txt2">缩略图：</td>
+       <td width="80%" >
+           <div class="form-group">
+											<div class="col-lg-6">
+												<div class="imgtu">
+												<div class="imgtu_title" id="tupian1" style="cursor:pointer;">本地图片</div>
+												<div class="imgtu_con" id="tupian_con1">
+												<div class="imgtu_con_li">
+													<div class="imgtu_con_li_top"><div id="showimg1"></div></div>
+													<div class="imgtu_con_li_bottom"><div class="btn">
+            <span>添加图片</span>
+            <input id="fileupload1" type="file" name="mypic" onclick="img_upload('fileupload1','showimg1','form1')" />
+        </div></div><input type="hidden" name="logo" id="fileupload1_pic">
+												</div> 
+												 
+       </td>
+   </tr>
+   
+   <tr class="zidingyi">
+       <td height="10" align="right" class="left_txt2"><span class="must">*</span>内容：</td>
+       <td>
+       <textarea class="ref_tex" id="send_content" name="send_content" onblur="setnum(this.value)" onkeydown="setnum(this.value)"></textarea>
+       <span class="bxcon_lists_right">
+                        	<span id="setnum"></span>
+                        </span>
+       </td>
+   </tr>
+   
+   <tr class="moban" style="display:none;">
+       <td height="10" align="right" class="left_txt2"><span class="must">*</span>点击选择：</td>
+       <td>
+          <input type="text" name="info_tpl" readonly value="" id="info_tpl" />
+          <input type="hidden" name="info_tpl_id" value="" id="info_tpl_id" />
+          <input type="button" onclick="add_tel()" value="选择" />
+       </td>
+   </tr>
+   
+   <tr>
+       <td colspan="2">
+          <div class="addoperation">
+          <input type="submit" class="buttonsave" value="保存" name="sub_authority" />
+          &nbsp;
+          <input type="reset" class="buttoncancel" value="取消" onclick="javascript:history.go(-1);" name="B12" />
+          </div>
+       </td> 
+   </tr>
+
+</table>
+</form>
+<div>&nbsp;</div>
+</div>
+<script type="text/javascript">
+function add_tel(){
+	//var res=open("{:U('info/select_tel')}",'_blank','width=1000,height=600,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=yes');
+	
+	//window.showModalDialog("{:U('info/select_tel')}",window,'dialogHeight:500px, dialogLeft:100px, dialogTop:100px,dialogWidth:300px, status:0, edge:sunken'); 
+	var res=window.showModalDialog("{:U('info/select_tel')}",null,"dialogWidth:1000px;dialogHeight:600px;help:no;status:no");
+	if(res!='undefined'){
+		$('#info_tpl').val(res[1]);
+		$('#info_tpl_id').val(res[0]);
+	}
+}
+
+function sele_tel(id){
+	if(id==1){
+		$('.moban').show();
+		$('.zidingyi').hide();
+	}else{
+		$('.moban').hide();
+		$('.zidingyi').show();
+	}
+}
+
+function setnum(val){
+  	 var num=600-val.length;
+  	 if(num<=0){
+  	 	val=val.substring(0,600);
+  	 	$('#send_content').val(val);
+  	 }
+  	 $('#setnum').html('还可以输入'+num+'字');
+  }
+</script>

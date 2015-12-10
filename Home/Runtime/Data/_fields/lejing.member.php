@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'user_id', 1 => 'shop_id', 2 => 'username', 3 => 'password', 4 => 'nickname', 5 => 'zhiwu', 6 => 'sex', 7 => 'mobile', 8 => 'qq', 9 => 'status', 10 => 'fstcreate', 11 => 'lastmodify', '_autoinc' => true, '_pk' => 'user_id', ); ?>

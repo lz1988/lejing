@@ -1,0 +1,160 @@
+<form name="form" action="/item/buy" id="buyform" method="post">
+<div class="header">
+    <h1>蜜熙订单</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <div class="Notice">
+        <p>公告:蜜粉们，欢迎提前一天预定，有劲爆礼品等着你哦！</p>
+    </div>
+    <div class="Order_book">
+        <h2>组合</h2>
+        <div class="Combination">
+
+            <ul>
+                <!--<li>组合1<span>榴莲披萨+千层</span>
+                    <i class="C-price">￥<b>22</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number" readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                </li>
+                <li>组合1<span>榴莲披萨+千层</span>
+                    <i class="C-price">￥<b>22</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number" readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                </li>-->
+                <foreach name="assemble_list" item="vo" key="k">
+                <li>组合{++$k}<span>{$vo.item_name}</span><input type="hidden" name="item_id_once[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <i class="C-price">￥<b>{$vo.item_price}</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number"  name="num_once[{$vo.item_id}]"  readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                    <input type="hidden" name="size_once[{$vo.item_id}]" value="" class="size"/>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <h2>单点</h2>
+        <div class="Buy_once">
+            <ul>
+                <foreach name="item_list" item="list">
+                    <li><div class="B_name"><input type="hidden" name="item_id_once[{$list.item_id}]" value="{$list.item_id}"/>{$list.item_name}</div>
+                        <div  class="size">
+                            <p class="field switch">
+                                <label for="radio1" class="cb-enable selected"><span>6寸</span></label>
+                                <label for="radio2" class="cb-disable"><span>9寸</span></label>
+                                <input type="hidden" name="size_once[{$list.item_id}]" value="6寸" class="size"/>
+                            </p>
+
+                        </div>
+                        <div class="New-Count">
+                            <a href="#" class="C-less amount-down">-</a>
+                            <input type="text" value="0" name="num_once[{$list.item_id}]" class="C-Number" readonly/>
+                            <a href="#" class="C-less amount-up">+</a>
+                        </div>
+                        <i class="C-price">￥<b>{$list.item_price}</b></i>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <div class="order_total">
+            已选择<span id="num_total">0</span>份，共￥<span id="total">0</span>元
+        </div>
+        <!--<a href="#" class="Ok">选好了</a>-->
+        <input type="submit" class="Ok" name="submit" value="选好了"/>
+    </div>
+</div><!--main 结束 -->
+</form>
+
+<script type="text/javascript">
+    $(document).ready( function(){
+        $(".cb-enable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-disable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            var size = $(this).text();
+            $('.size',parent).val(size);
+            $('.checkbox',parent).attr('checked', true);
+        });
+        $(".cb-disable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-enable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            var size = $(this).text();
+            $('.size',parent).val(size);
+            $('.checkbox',parent).attr('checked', false);
+        });
+
+        $("#buyform").submit(function(){
+            //var num_once = $("input[name='num_once']").val();
+            var num = 0;
+            $(".Order_book ul li").each(function(){
+                num+=parseInt($(this).find('input[class*=C-Number]').val());
+            });
+            if (num == 0) {
+                alert("您还没有选择产品呢！");
+                return false;
+            }
+        })
+    });
+
+
+    //购物车数量加减
+    $(function(){
+        //获得文本框对象
+        var t = $(".C-Numbe");
+        //数量增加操作
+        $(".amount-up").click(function(e){
+            var c1=parseInt($(this).prev().val());
+            var b1=parseInt($("#num_total").text());
+            $(this).prev().val(c1+1);
+            $("#num_total").text(b1+1)
+            setTotal();
+            e.preventDefault()
+        });
+        //数量减少操作
+        $(".amount-down").click(function(e){
+            var c1=parseInt($(this).next().val());
+            var b1=parseInt($("#num_total").text());
+            $("#num_total").text(b1-1)
+            if(c1>=1){
+                $(this).next().val(c1-1);
+            };
+            setTotal();
+            e.preventDefault()
+        });
+
+        function setTotal(){
+            //  var total=0;
+            // // 遍历合计件数
+            //  t.each(function(index,ele){
+            //      total+=parseInt($(ele).val());
+            //       alert(total)
+            //   });
+            //  $("#num_total").html(total);
+
+
+            var s=0;
+            $(".Order_book ul li").each(function(){
+                s+=parseInt($(this).find('input[class*=C-Number]').val())*parseFloat($(this).find('.C-price b').text());
+            });
+            $("#total").html(s.toFixed(2));
+
+
+        }
+        // 初始化
+        setTotal();
+
+    })
+
+
+</script>

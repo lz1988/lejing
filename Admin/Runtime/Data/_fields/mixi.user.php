@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'user_id', 1 => 'username', 2 => 'nick_name', 3 => 'tel', 4 => 'sex', 5 => 'age', 6 => 'nian', 7 => 'yue', 8 => 'ri', 9 => 'qq', 10 => 'create_time', 11 => 'openid', 12 => 'city_name', 13 => 'headimgurl', 14 => 'status', 15 => 'code_id', 16 => 'is_master', 17 => 'is_tg', 18 => 'tg_user', 19 => 'lastmodify', '_autoinc' => true, '_pk' => 'user_id', ); ?>

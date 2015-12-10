@@ -1,0 +1,578 @@
+<form name="form" id="baseform" method="post" action="/user/done">
+<!--<div class="header">
+    <h1>购物车</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div>--><!--页眉 结束-->
+<div class="main">
+    <div class="shop_cart">
+        <h2>购物车</h2>
+        <!--2015 3 8 -->
+        <div class="cart-tab">
+            <h4>购物车列表:</h4>
+            <table>
+                <if condition="$cart_data_list neq ''">
+                <tbody>
+                <foreach name="cart_data_list" item="vo">
+                    <tr class="c-tr">
+                        <td class="C-t-name">{$vo.item_name} </td>
+                        <td class="C-t-no">
+                            <input type="hidden" name="cart_id" id="cart_id" value="{$vo.cart_id}"/>
+                            <div class="New-Count">
+                                <a href="#" class="C-less amount-down">-</a>
+                                <input type="text" value="{$vo.item_num}" class="C-Number" readonly/>
+                                <a href="#" class="C-less amount-up">+</a>
+                            </div>
+                        </td>
+                        <td class="C-t-price">￥<span>{$vo.item_price}</span></td>
+                        <td class="C-t-delete"><em></em></td>
+                    </tr>
+                </foreach>
+                </tbody>
+                <th class="C-t-count">共计</th>
+                <th class="C-t-zongjia">￥<span id="total"></span></th>
+                <else/>
+                    <tbody><tr><td>购物车为空</td></tr></tbody>
+                </if>
+            </table>
+
+        </div>
+        <!--2015 3 8 end-->
+        <div  class="shop_cart_mid">
+            <dl>
+                <dt>联系人</dt>
+                <dd><input type="text" name="consignee" class="info_1"/></dd>
+            </dl>
+            <dl>
+                <dt>联系电话</dt>
+                <dd><input type="text" name="tel" class="info_1"/></dd>
+            </dl>
+            <dl>
+                <dt>配送地址</dt>
+                <!--<dd class="address">
+                    <select>
+                        <option value="name">省</option>
+                        <option value="beijin">北京</option>
+                        <option value="opel">湖南</option>
+                        <option value="opel">湖北</option>
+                    </select>
+                    <select>
+                        <option value="name">市</option>
+                        <option value="beijin">长沙</option>
+                        <option value="opel">岳阳</option>
+                        <option value="opel">株洲</option>
+                    </select>
+                    <select>
+                        <option value="name">区</option>
+                        <option value="beijin">雨花</option>
+                        <option value="opel">芙蓉</option>
+                        <option value="opel">开福</option>
+                    </select>
+                </dd>-->
+
+               <!-- <div class="select_box">
+                    <input id="myselect" type="text" name="city_name" class="city_name" value="请选择" readonly="readonly">-->
+                    <!--<ul class="select_ul" id="city_list1">-->
+                    <select id="city_list1" name="province_id">
+                        <option value="" selected>请选择</option>
+                        <foreach name="city_list1" item="list1">
+                            <!--<li onclick="get_city({$list1.cid},2)" city_id="{$list1.cid}">{$list1.cname}</li>-->
+                            <option value="{$list1.cid}">{$list1.cname}</option>
+                        </foreach>
+                    </select>
+                    <!--</ul>-->
+              <!--  </div>-->
+              <!--  <div class="select_box">
+                    <input id="myselect" type="text" value="请选择" readonly="readonly">-->
+                   <!-- <ul class="select_ul" id="city_list2">
+                    </ul>-->
+                   <!-- <select id="city_list2" name="city_id"></select>-->
+             <!--   </div>-->
+               <!-- <div class="select_box">
+                    <input id="myselect" type="text" value="请选择" readonly="readonly">-->
+                  <!--  <ul class="select_ul" id="city_list3">
+                    </ul>-->
+                    <!--<select id="city_list3" name="district_id"></select>-->
+                <!--</div>-->
+
+            </dl>
+
+            <dl>
+                <dt></dt>
+                <dd> <select id="city_list2" name="city_id"></select></dd>
+            </dl>
+
+            <dl>
+                <dt></dt>
+                <dd><select id="city_list3" name="district_id"></select></dd>
+            </dl>
+
+
+
+                <dl>
+                    <dt></dt>
+                    <dd><textarea name="address"></textarea></dd>
+                </dl>
+
+            <p>温馨提示：为了保持良好的口感，外卖配送范围为可
+                选区域3公里以内。</p>
+            <dl>
+                <dt>配送时间</dt>
+                <dd class="time">
+                    <!--<select>
+                        <option value="name">1月5日</option>
+                        <option value="time">1月6日</option>
+                    </select>-->
+                    <php>$time=time();</php>
+                    <select name="send_date">
+                    <option value="<php>echo date('Y-m-d',$time+24*3600)</php>"><php>echo intval(date('m',$time+72*3600)).'月'.intval(date('d',$time+24*3600)).'日';</php></option>
+                    <option value="<php>echo date('Y-m-d',$time+48*3600)</php>"><php>echo intval(date('m',$time+72*3600)).'月'.intval(date('d',$time+48*3600)).'日';</php></option>
+                    <option value="<php>echo date('Y-m-d',$time+72*3600)</php>"><php>echo intval(date('m',$time+72*3600)).'月'.intval(date('d',$time+72*3600)).'日';</php></option>
+                    </select>
+                    <select name="send_time">
+                        <!--<option value="time">请选择</option>-->
+                        <option value="10:00-10:30">10:00-10:30</option>
+                        <option value="11:00-11:30">11:00-11:30</option>
+                        <option value="12:00-12:30">12:00-12:30</option>
+                        <option value="13:00-13:30">13:00-13:30</option>
+                        <option value="14:00-14:30">14:00-14:30</option>
+                        <option value="14:30-15:00">14:30-15:00</option>
+                        <option value="15:00-15:30">15:00-15:30</option>
+                        <option value="15:30-16:00">15:30-16:00</option>
+                        <option value="16:00-16:30">16:00-16:30</option>
+                        <option value="16:30-17:00">16:30-17:00</option>
+                        <option value="17:30-18:00">17:30-18:00</option>
+                        <option value="18:00-18:30">18:00-18:30</option>
+                        <option value="18:30-19:00">18:30-19:00</option>
+                        <option value="19:00-19:30">19:00-19:30</option>
+                        <option value="19:30-20:00">19:30-20:00</option>
+                        <option value="20:30-21:00">20:30-21:00</option>
+                        <option value="21:00-21:30">21:00-21:30</option>
+                    </select></dd>
+            </dl>
+            <dl style="margin-top:20px">
+                <dt>备注</dt>
+                <dd><input type="text" name="remark" class="info_1"/></dd>
+            </dl>
+            <ul class="sale_info">
+                <li>首次微信下单直减<b>5</b>元</li>
+                <li>首次微信支付送<b>5</b>元外卖券</li>
+                <li>微信支付，每单立减<b>1</b>元</li>
+            </ul>
+
+            <input type="submit" name="submit" value="确认订单" class="Ok"/>
+            <a href="/item/item_list" class="continue">继续购物</a>
+        </div>
+    </div>
+
+</div><!--main 结束 -->
+</form>
+<script type="text/javascript">
+
+    $(function(){
+
+        $("#baseform").submit(function(){
+
+            var num = 0;
+            $(".cart-tab table tr.c-tr").each(function(){
+                num+=parseInt($(this).find('input[class*=C-Number]').val());
+            });
+            if (num == 0) {
+                alert("您购物车没有产品呢！");
+                return false;
+            }
+
+            var consignee = $("input[name='consignee']").val();
+            var tel = $("input[name='tel']").val();
+            var province_id = $("select[name='province_id']").val();
+            var city_id = $("select[name='city_id']").val();
+            var district_id = $("select[name='district_id']").val();
+            var address = $("input[name='address']").val();
+            var send_date = $("input[name='address']").val();
+            var send_time = $("input[name='send_time']").val();
+
+            if (consignee == "")
+            {
+                alert("请填写收件人");
+                return false;
+            }
+
+            if (tel == "")
+            {
+                alert("请填写手机号码");
+                return false;
+            }
+
+            var myreg = /^1\d{10}$/;
+            if(!myreg.test(tel))
+            {
+                alert('请输入有效的手机号码！');
+                return false;
+            }
+
+            if (province_id == "")
+            {
+                alert("请填写省份");
+                return false;
+            }
+
+            if (city_id == "")
+            {
+                alert("请填写市");
+                return false;
+            }
+
+            if (address == "")
+            {
+                alert("请填写配送具体地址");
+                return false;
+            }
+        })
+
+        $("#city_list1").change(function(){
+            var id = 2;
+            var pid = $(this).val();
+
+            if(id!=4){
+                $.ajax({
+                    type:"POST",
+                    url: "{:U('Public/is_pid_get_city')}",
+                    data: "pid="+pid,beforeSend: function(){
+                    },
+                    success: function(msg){
+                        //alert(msg)
+                        var obj=eval(msg);
+                        var html='';
+                        for(var j=id;j<4;j++){
+                            $('#city_list'+j).html(html);
+                        }
+                        var numid=id+1;
+                        for(var i=0;i<obj.length;i++){
+                            html=html+'<option  value="'+obj[i].cid+'" city_id="'+obj[i].cid+'">'+obj[i].cname+'</option>';
+                        }
+                        $('#city_list'+id).html(html);
+
+                    }});
+            }else{
+                $('#address_'+3).html($('#city_list'+3+' option:selected').text());
+            }
+
+        })
+
+        $("#city_list2").change(function(){
+            var id = 3;
+            var pid = $(this).val();
+            //alert(pid)
+
+            if(id!=4){
+                $.ajax({
+                    type:"POST",
+                    url: "{:U('Public/is_pid_get_city')}",
+                    data: "pid="+pid,beforeSend: function(){
+                    },
+                    success: function(msg){
+                        //alert(msg)
+                        var obj=eval(msg);
+                        var html='';
+                        for(var j=id;j<4;j++){
+                            $('#city_list'+j).html(html);
+                        }
+                        var numid=id+1;
+                        for(var i=0;i<obj.length;i++){
+                            html=html+'<option  value="'+obj[i].cid+'"   city_id="'+obj[i].cid+'">'+obj[i].cname+'</option>';
+                        }
+                        $('#city_list'+id).html(html);
+
+                    }});
+            }else{
+                $('#address_'+3).html($('#city_list'+3+' option:selected').text());
+            }
+        })
+    });
+
+    function check_input(){
+        var user_name=$('#user_name').val();
+        var usernameid=$('#usernameid').val();
+        if(usernameid==1){
+            if(user_name==''){
+                //alert('请填写预约姓名');
+            }
+        }
+        var city_name=$('#address').text();
+        var address=$('#address2').val();
+        if(city_name!='选择地区' && address!=''){
+            //$(".left_icon span").addClass("l_cur");
+            $("#addcurl1 span").addClass("l_cur");
+            return false;
+        }
+
+        var sub_time1=$('#sub_time1').val();
+        var sub_time2=$('#sub_time2').val();
+        var  sub_time=sub_time1+' '+sub_time2;
+        var time_text=$('#time').text();
+        /*if(city_name!='选择地区' && address!='' && sub_time1!='' && sub_time2!='' && time_text!='时间'){
+            $(".go_next a").addClass("sure");
+            return true;
+        }else{
+            $(".go_next a").removeClass("sure");
+            return false;
+        }*/
+
+    }
+
+    function check_input2(){
+        var user_name=$('#user_name').val();
+        var usernameid=$('#usernameid').val();
+        var city_name=$('#address').text();
+        var address=$('#address2').val();
+        if(city_name!='选择地区' && address!=''){
+            $("#addcurl1 span").addClass("l_cur");
+        }
+
+        var sub_time1=$('#sub_time1').val();
+        var sub_time2=$('#sub_time2').val();
+        var  sub_time=sub_time1+' '+sub_time2;
+        var time_text=$('#time').text();
+       /* if(city_name!='选择地区' && address!='' && sub_time1!='' && sub_time2!=''){
+            $(".go_next a").addClass("sure");
+        }else{
+            $(".go_next a").removeClass("sure");
+        }*/
+    }
+
+    $(document).ready(function(){
+        $("#address").click(function(){
+            $("#add_box").show()
+        })
+        $("#time").click(function(){
+            $("#time_box").show()
+        })
+
+        //模拟select效果
+        $(".select_box input").click(function(){
+            var thisinput=$(this);
+            var thisul=$(this).parent().find("ul");
+            if(thisul.css("display")=="none"){
+                if(thisul.height()>200){thisul.css({height:"110"+"px","overflow-y":"scroll" })};
+                thisul.fadeIn("100");
+                thisul.hover(function(){},function(){thisul.fadeOut("100");})
+                thisul.find("li").click(function(){
+                    thisinput.val($(this).text());
+                    thisinput.next().val($(this).attr('date'));
+                    thisul.fadeOut("100");})
+            }
+            else{
+                thisul.fadeOut("fast");
+            }
+        })
+
+        $("#add_box .submit").click(function(){
+            var endinfo="";
+            $("#add_box .select_box input:text").each(function(i){
+                endinfo=endinfo+$(this).val();
+            })
+            $(".fix_select_box").hide();
+            $("#address").text(endinfo);
+        })
+        $("#time_box .submit").click(function(){
+            var endinfo="";
+            $("#time_box .select_box input:text").each(function(i){
+                endinfo=endinfo+$(this).val();
+            })
+            $(".fix_select_box").hide();
+            $("#time").text(endinfo);
+            $("#addcurl2 span").addClass("l_cur");
+            //$("#sub_time").val(endinfo2);
+        })
+        $(".cancel").click(function(){
+            $(".fix_select_box").hide()
+
+        })
+    });
+    $(function(){
+        $(".nacv_list li").click(function() {
+            $(this).addClass("cur");
+            $(this).siblings().removeClass("cur");
+            if($('#username').is(':hidden')){
+                $('#username').show();
+                $('#usernameid').val(1);
+            }else{
+                $('#username').hide();
+                $('#usernameid').val(0);
+            }
+//        var $dangqian = $(".write_info").eq($(".nacv_list li").index(this));
+//        $dangqian.addClass("block");
+//        $dangqian.siblings().removeClass("block");
+        });
+    });
+
+    /*function get_city(pid,id){
+        //alert(3333);
+        if(id!=4){
+            $.ajax({
+                type:"POST",
+                url: "{:U('Public/is_pid_get_city')}",
+                data: "pid="+pid,beforeSend: function(){
+                },
+                success: function(msg){
+                    var obj=eval(msg);
+                    var html='';
+                    for(var j=id;j<4;j++){
+                        $('#city_list'+j).html(html);
+                    }
+                    var numid=id+1;
+                    for(var i=0;i<obj.length;i++){
+                        html=html+'<li onclick="get_city('+obj[i].cid+','+numid+')" city_id="'+obj[i].cid+'">'+obj[i].cname+'</li>';
+                    }
+                    $('#city_list'+id).html(html);
+
+                }});
+        }else{
+            $('#address_'+3).html($('#city_list'+3+' option:selected').text());
+        }
+
+    }*/
+
+   /* $('.go_next').click(function (){
+        var user_name=$('#user_name').val();
+        var usernameid=$('#usernameid').val();
+        if(usernameid==1){
+            if(user_name==''){
+                $('#tsinfo').html('请填写预约姓名');
+                $('.msg_layer').show();
+                return false;
+            }
+        }
+        var city_name=$('#address').text();
+        var address=$('#address2').val();
+        var sub_time1=$('#sub_time1').val();
+        var sub_time2=$('#sub_time2').val();
+        var  sub_time=sub_time1+' '+sub_time2;
+        var time_text=$('#time').text();
+        *//*if(city_name=='选择地区' || address=='' || sub_time1=='' || sub_time2=='' || time_text=='时间'){
+            $('#tsinfo').html('请填写完整的信息');
+            $('.msg_layer').show();
+            return false;
+        }*//*
+        $.ajax({
+            url: "{:U('user/subscribe')}",
+            type: "post",
+            dataType: "json",
+            data: "user_name="+user_name+"&usernameid="+usernameid+"&city_name="+city_name+"&address="+address+"&sub_time="+sub_time,
+            success: function(data) {
+                //alert(data.info);
+                if({$is_val}==true){
+                    document.location="/user/sub_orders";
+                }else{
+                    document.location="/user/validation";
+                }
+            },
+            cache: false,
+            timeout: 5000,
+            error: function() {
+                alert("错误");
+            }
+        });
+    });*/
+
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(".C-t-delete em").click(function(){
+            $(this).parent().parent("tr").remove();
+            var s =parseInt($(this).parent().siblings(".C-t-no").find('input[class*=C-Number]').val())*parseFloat($(this).parent().siblings(".C-t-price").find('span').text());
+            var t_html= $("#total").text();
+            $("#total").html(t_html-s.toFixed(2));
+        })
+    })
+
+
+    //购物车数量加减
+    $(function(){
+        //获得文本框对象
+        var t = $(".C-Numbe");
+        //数量增加操作
+        $(".amount-up").click(function(e){
+            var c1=parseInt($(this).prev().val());
+            $(this).prev().val(c1+1);
+            var num = c1+1;
+            var cart_id = $(this).parent().prev().val();
+
+            $.ajax({
+                url: "{:U('item/modify_cart')}",
+                type: "post",
+                dataType: "json",
+                data: "cart_id="+cart_id+"&num="+num,
+                success: function(data) {
+                    if (data == 1)
+                    {
+                        alert("操作失败!");
+                    }else if(data == 2){
+                        window.location.reload();
+                    }
+                },
+                cache: false,
+                timeout: 5000,
+                error: function() {
+                    alert("错误");
+                }
+            });
+
+            setTotal();
+            e.preventDefault()
+        });
+        //数量减少操作
+        $(".amount-down").click(function(e){
+            var c1=parseInt($(this).next().val());
+
+            if(c1>=1){
+                $(this).next().val(c1-1);
+            };
+            var num = c1-1;
+            var cart_id = $(this).parent().prev().val();
+            if (num == 0)
+            {
+                if(!confirm("确定要删除数据吗？")){
+                    window.location.reload();
+                    return false;
+                }
+            }
+           $.ajax({
+                url: "{:U('item/modify_cart')}",
+                type: "post",
+                dataType: "json",
+                data: "cart_id="+cart_id+"&num="+num,
+                success: function(data) {
+                    if (data == 1)
+                    {
+                        alert("操作失败!");
+                    }else if(data == 2){
+                        window.location.reload();
+                    }
+                },
+                cache: false,
+                timeout: 5000,
+                error: function() {
+                    alert("错误");
+                }
+            });
+
+            setTotal();
+            e.preventDefault()
+        });
+
+        function setTotal(){
+            var s=0;
+            $(".cart-tab table tr.c-tr").each(function(){
+                s+=parseInt($(this).find('input[class*=C-Number]').val())*parseFloat($(this).find('.C-t-price span').text());
+            });
+            $("#total").html(s.toFixed(2));
+
+
+        }
+        // 初始化
+        setTotal();
+
+    })
+
+</script>

@@ -1,0 +1,302 @@
+<form name="baseform" method="post" action="/item/buy_all" >
+<div class="header">
+    <h1>蜜熙订单</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <div class="Mx_order_top">
+        <ul class="Sign_tab" id="Js_List_Btn" >
+            <li><i class="left_inco"></i><a href="#" class="cur">精致甜点系列</a></li>
+            <li><a href="#">杯饮系列</a></li>
+            <li><a href="#">糯米饭系列</a></li>
+            <li><a href="#">特色混搭系列</a></li>
+            <li><i class="right_inco"></i><a href="#">招牌系列</a></li>
+        </ul>
+    </div><!--选项卡按钮 结束-->
+    <div class="Mx_order_body" id="Js_List_box">
+        <div class="Chron" style=" display:block">
+            <ul class="Mx_order_list">
+               <!-- <li>
+                    <div class="Mx_order_list_l"> aa</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">10</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>-->
+                <foreach name="data_jingzhitiandian" item="vo">
+                <li><input type="hidden" name="item_id_1[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <div class="Mx_order_list_l">{$vo.item_name}</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">{$vo.item_price}</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" name="num_1[{$vo.item_id}]"  class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div class="Chron">
+            <ul class="Mx_order_list">
+                <foreach name="data_beiyin" item="vo">
+                <li><input type="hidden" name="item_id_2[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <div class="Mx_order_list_l"> {$vo.item_name}</div>
+                    <div class="Mx_order_list_l">
+                        <p class="field switch">
+                            <label for="radio1" class="cb-enable selected"><span>冷</span></label>
+                            <label for="radio2" class="cb-disable"><span>热</span></label>
+                            <input type="hidden" name="state[{$vo.item_id}]" value="冷" class="state"/>
+                        </p>
+                    </div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">{$vo.item_price}</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0"  name="num_2[{$vo.item_id}]" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                </foreach>
+                <!--<li>
+                    <div class="Mx_order_list_l">bbbb(榴莲)</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">25</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+        <div class="Chron">
+            <ul class="Mx_order_list">
+                <!--<li>
+                    <div class="Mx_order_list_l"> nnnnn</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">25</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>-->
+                <foreach name="data_nuoni" item="vo">
+                <li><input type="hidden" name="item_id_3[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <div class="Mx_order_list_l">{$vo.item_name}</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">{$vo.item_price}</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" name="num_3[{$vo.item_id}]" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div class="Chron">
+            <ul class="Mx_order_list">
+               <!-- <li>
+                    <div class="Mx_order_list_l"> dddddd</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">25</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>-->
+                <foreach name="data_tese" item="vo">
+                <li><input type="hidden" name="item_id_4[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <div class="Mx_order_list_l">{$vo.item_name}</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">{$vo.item_price}</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" name="num_4[{$vo.item_id}]" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div class="Chron">
+            <ul class="Mx_order_list">
+                <!--<li>
+                    <div class="Mx_order_list_l"> fffff</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">253</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>-->
+                <foreach name="data_zhaopai" item="vo">
+                <li><input type="hidden" name="item_id_5[{$vo.item_id}]" value="{$vo.item_id}"/>
+                    <div class="Mx_order_list_l">{$vo.item_name}</div>
+                    <div class="Mx_order_list_r">
+                        <dl class="buy_cart">
+                            <dt class="price">￥<span class="p_num">{$vo.item_price}</span></dt>
+                            <dd class="jishuqi">
+                                <a href="#" class="cut amount-down">-</a>
+                                <input type="text" value="0" name="num_5[{$vo.item_id}]" class="Number"/>
+                                <a href="#" class="add amount-up">+</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+    </div><!--选项卡内容 结束-->
+    <div class="Mx_order_bot">
+        <p>首次微信下单直减<b>5</b>元，首次微信支付送<b>5</b>元外卖券微信支付，每单立减<b>1</b>元</p>
+        <div class="order_total">
+            已选择<span id="num_total">0</span>份，共￥<span id="total">0</span>元
+        </div>
+        <!--<a href="#" class="Ok">选好了</a>-->
+        <input type="hidden" name="shop_id" value="{$Think.get.shop_id}"/>
+        <input type="submit" name="submit" value="选好了" class="Ok"/>
+    </div>
+</div><!--main 结束 -->
+</form>
+
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function(){
+        $(".cb-enable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-disable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            var state = $(this).text();
+            $('.state',parent).val(state);
+            $('.checkbox',parent).attr('checked', true);
+        });
+        $(".cb-disable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-enable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            var state = $(this).text();
+            $('.state',parent).val(state);
+            $('.checkbox',parent).attr('checked', false);
+        });
+
+        $("form").submit(function(){
+            var s = 0;
+            $(".Mx_order_list li").each(function(){
+                s+=parseInt($(this).find('input[class*=Number]').val());
+            });
+
+            if (s == 0){
+                alert("您还没有选择了！");
+                return false;
+            }
+        })
+    });
+
+    //购物车数量加减
+    $(function(){
+        //获得文本框对象
+        var t = $(".Number");
+        //数量增加操作
+        $(".amount-up").click(function(e){
+            var c1=parseInt($(this).prev().val());
+            $(this).prev().val(c1+1);
+            setTotal();
+            e.preventDefault()
+        });
+        //数量减少操作
+        $(".amount-down").click(function(e){
+            var c1=parseInt($(this).next().val());
+            if(c1>=1){
+                $(this).next().val(c1-1);
+            };
+            setTotal();
+            e.preventDefault()
+        });
+
+        function setTotal(){
+            var total=0;
+            // 遍历合计件数
+            t.each(function(index,ele){
+                total+=parseInt($(ele).val());
+            });
+
+            $("#num_total").html(total);
+
+            var s=0;
+            $(".Mx_order_list li").each(function(){
+                //s+=parseInt($(this).find(t).val())*parseFloat($(this).find('.p_num').text());
+                s+=parseInt($(this).find('input[class*=Number]').val())*parseFloat($(this).find('span[class*=p_num]').text());
+            });
+            $("#total").html(s.toFixed(2));
+
+
+        }
+        // 初始化
+        setTotal();
+
+    })
+
+</script>
+<script>
+    function Order_Tab()
+    {
+        var oBtnBox = document.getElementById('Js_List_Btn');
+        var obtn = oBtnBox.getElementsByTagName("a");
+        var oBox = document.getElementById("Js_List_box");
+        var oDiv = oBox.getElementsByClassName('Chron');
+        var i = 0;
+        for(i=0; i<obtn.length;i++)
+        {
+            obtn[i].index=i;
+            obtn[i].onclick=function(){
+                for(i=0; i<obtn.length;i++)
+                {
+                    obtn[i].className='';
+                    oDiv[i].style.display='none';
+                }
+
+                this.className='cur'
+                oDiv[this.index].style.display='block';
+            }
+        }
+    }
+    Order_Tab();
+</script>
+
+

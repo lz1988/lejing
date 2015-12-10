@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'input_date', 2 => 'shop_id', 3 => 'price', 4 => 'discount', 5 => 'processing_fee', 6 => 'int_processing_fee', 7 => 'jingpian_price', 8 => 'jingpian_discount', 9 => 'spending', 10 => 'int_spending', 11 => 'other_price', 12 => 'int_other_price', 13 => 'taxes_fee', 14 => 'int_taxes_fee', 15 => 'financial_cost', 16 => 'int_financial_cost', 17 => 'creater', 18 => 'create_time', 19 => 'reviewer', 20 => 'checker', 21 => 'remark', '_autoinc' => true, '_pk' => 'id', ); ?>

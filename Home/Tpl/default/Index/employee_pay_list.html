@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统-销售费用</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】 &nbsp;&nbsp; <a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+	
+	<table border="1" width="100%">
+	<tr>
+	<td>日期</td>
+	<td>分店名称</td>
+	<td>姓名</td>
+	<td>职务</td>
+	<td>标准工资</td>
+	<td>职务补贴</td>
+	<td>量化考核</td>
+	<td>考勤工资</td>
+	<td>加班费</td>
+	<td>提成额</td>
+	<td>业务奖罚</td>
+	<td>行政奖罚</td>
+	<td>餐补</td>
+	<td>交通</td>
+	<td>住宿</td>
+	<td>代垫款</td>
+	<td>代扣费</td>
+	<td>代缴社保</td>
+	<td>实发工资</td>
+	</tr>
+	<volist name="arr" id="vo">
+	<tr>
+	<td>{$vo.input_date}</td>
+	<td>{$vo.shop_name}</td>
+	<td>{$vo.nickname}</td>
+	<td>{$vo.zhiwu}</td>
+	<td>{$vo.gongzi}</td>
+	<td>{$vo.butie}</td>
+	<td>{$vo.lianghua}</td>
+	<td>{$vo.kaoqinggongzi}</td>
+	<td>{$vo.jibanfei}</td>
+	<td>{$vo.tichenge}</td>
+	<td>{$vo.yewuchengfa}</td>
+	<td>{$vo.xingzhengchufa}</td>
+	<td>{$vo.canbu}</td>
+	<td>{$vo.jiaotong}</td>
+	<td>{$vo.zhusu}</td>
+	<td>{$vo.daidiankuan}</td>
+	<td>{$vo.daikoufei}</td>
+	<td>{$vo.daijiaoshebao}</td>
+	<td>{$vo.shifagongzi}</td>
+ 	</tr>
+	</volist>
+	
+	</table>
+</section>
+</body>
+</html>

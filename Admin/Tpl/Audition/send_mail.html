@@ -1,0 +1,112 @@
+<link href="__ROOT__/Public/Admin/css/list.css" rel="stylesheet" type="text/css" />
+<script src="__ROOT__/Public/Admin/js/jquery-1.6.js" type="text/javascript"></script>
+
+<script type="text/javascript">  
+ 
+
+function upsmall_icon(imgName){
+	 $("#updiv1show").show();
+     $("#updiv1hid").hide(); 
+};
+
+function hideProportion(){
+	$("#proportion").hide();
+	//$("#proportion,#qd").hide();
+	if($("#user_group").attr("data") == 1){
+		$("#qd").show();
+	}
+	if($("#user_group").attr("data") == 3){
+		$("#proportion").show();
+	}
+};
+
+$(function(){
+	$('#user_group').change(function(){
+		if($(this).val() == 1){
+			//$("#qd").show();
+			$("#proportion").hide();
+		}
+		else if($(this).val() == 3){
+			//$("#qd").hide();
+			$("#proportion").show();
+		}
+		else{
+			//$("#").hide();
+			//$("#proportion,#qd").hide();
+			$("#proportion").hide();
+		}
+	})	
+});
+
+function getSelectEditValue(){
+		var $select = $('select[data]');
+		if( $select.length > 0){
+			$select.each(function(){
+				$(this).val( $(this).attr('data') );
+			})
+		}//if
+	};
+window.onload = function(){ 
+	hideProportion();
+	getSelectEditValue();
+} 
+ 
+
+</script>  
+<div class="currentposition">
+    <div>{$cur_menu} > {$cur_title}</div>
+</div>
+<div class="addclass">
+<div class="addtopheight">&nbsp;</div>
+<table width="100%" class="addsearchClass" id="tableClass" border="0" cellpadding="0" cellspacing="0">   
+<form name="form1" id="form1" method="POST" action=""> 
+   <input type="hidden" name="user_id" value="{$info['user_id']}" />
+    <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">收件人：</td>
+       <td width="80%" >
+       <textarea name="email" class="textarea" cols="60" rows="5" >{$email}</textarea>*多个请有 ,  隔开
+       </td>
+   </tr>
+   <tr>
+       <td width="10%" height="30" align="right" class="left_txt2">发送主题：</td>
+       <td width="80%" ><input type="text" id="title" name="title" value="{$info['title']}" /></td>
+   </tr>
+   <tr>
+       <td height="10" align="right" class="left_txt2">发送内容：</td>
+       <td>
+       <div style="float:left;"><textarea name="content" style="height:150px;" class="textarea" cols="60" rows="5" ></textarea></div>
+       <div class="note" style="float:left;" id="remarkTip"></div>
+       </td>
+   </tr>
+   <tr>
+       <td colspan="2">
+          <div class="addoperation">
+          <input type="submit" class="buttonsave" value="保存" name="sub_authority" />
+          &nbsp;
+          <input type="reset" class="buttoncancel" value="取消" onclick="javascript:history.go(-1);" name="B12" />
+          </div>
+       </td> 
+   </tr>
+</form>
+</table>
+<div>&nbsp;</div>
+</div>
+<script>
+var btn = document.getElementById('buttonupload');
+btn.onclick = function(){
+	if($("#small").val()==""){
+		alert("你没有选择要上传的文件");
+		return;
+	}
+    ajaxFileUpload({
+        id:'small',
+        callback:function(){
+                var src = this.responseText;  
+                $("#upimage1").attr("src","{$userimgurl}"+src); 
+                $("#updiv1show").hide();
+                $("#head_icon").val(src);
+                $("#updiv1hid").show(); 
+        }
+    });    
+} 
+</script>

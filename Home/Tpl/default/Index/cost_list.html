@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】 &nbsp;&nbsp; <a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+	
+	<table border="1" width="100%">
+	<tr>
+	<td>日期</td>
+	<td>分店名称</td>
+	<td>产品成本</td>
+	<td>镜片成本</td>
+    <td>加工费</td>
+	<td>营业外支出</td>
+	<!-- <td>其他业务成本</td> -->
+	<td>营业税费</td>
+	<td>财务费用</td>
+        <td>汇总</td>
+	</tr>
+	<volist name="arr" id="vo">
+	<tr>
+	<td>{$vo.input_date}</td>
+	<td>{$vo.shop_name}</td>
+	<td>{$vo.chanpinchengben}</td>
+
+	<td>{$vo.jingpianchengben}</td>
+     <td>{$vo.processing_fee}</td>
+	<td>{$vo.spending}</td>
+	<!-- <td>{$vo.other_price}</td> -->
+	<td>{$vo.taxes_fee}</td>
+	<td>{$vo.financial_cost}</td>
+        <td>{$vo.sum}</td>
+	</volist>
+	
+	</table>
+</section>
+</body>
+</html>

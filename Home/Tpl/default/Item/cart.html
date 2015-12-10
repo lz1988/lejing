@@ -1,0 +1,136 @@
+<!--
+<div class="header">
+    <h1>蜜熙订单</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div>--><!--页眉 结束-->
+<div class="main">
+    <div class="Notice">
+        <p>公告:蜜粉们，欢迎提前一天预定，有劲爆礼品等着你哦！</p>
+    </div>
+    <div class="Order_book">
+        <h2>组合</h2>
+        <div class="Combination">
+
+            <ul>
+                <li>组合1<span>榴莲披萨+千层</span>
+                    <i class="C-price">￥<b>22</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number" readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                </li>
+                <li>组合1<span>榴莲披萨+千层</span>
+                    <i class="C-price">￥<b>22</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number" readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                </li>
+                <li>组合1<span>榴莲披萨+千层</span>
+                    <i class="C-price">￥<b>22</b></i>
+                    <div class="New-Count">
+                        <a href="#" class="C-less amount-down">-</a>
+                        <input type="text" value="0" class="C-Number" readonly/>
+                        <a href="#" class="C-less amount-up">+</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h2>单点</h2>
+        <div class="Buy_once">
+            <ul>
+                <foreach name="cart_list" item="list">
+                <li><div class="B_name">{$list.item_name}</div>
+                    <div  class="size">
+                        <p class="field switch">
+                            <label for="radio1" class="cb-enable selected"><span>6寸</span></label>
+                            <label for="radio2" class="cb-disable"><span>9寸</span></label>
+                        </p></div>
+                    <div class="New-Count">
+                    <a href="#" class="C-less amount-down">-</a>
+                    <input type="text" value="0" class="C-Number" readonly/>
+                    <a href="#" class="C-less amount-up">+</a>
+                </div>
+                    <i class="C-price">￥<b>{$list.item_price}</b></i>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <div class="order_total">
+            已选择<span id="num_total">0</span>份，共￥<span id="total">0</span>元
+        </div>
+        <a href="#" class="Ok">选好了</a>
+    </div>
+</div><!--main 结束 -->
+
+<script type="text/javascript">
+    $(document).ready( function(){
+        $(".cb-enable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-disable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            $('.checkbox',parent).attr('checked', true);
+        });
+        $(".cb-disable").click(function(){
+            var parent = $(this).parents('.switch');
+            $('.cb-enable',parent).removeClass('selected');
+            $(this).addClass('selected');
+            $('.checkbox',parent).attr('checked', false);
+        });
+    });
+
+
+    //购物车数量加减
+    $(function(){
+        //获得文本框对象
+        var t = $(".C-Numbe");
+        //数量增加操作
+        $(".amount-up").click(function(e){
+            var c1=parseInt($(this).prev().val());
+            var b1=parseInt($("#num_total").text());
+            $(this).prev().val(c1+1);
+            $("#num_total").text(b1+1)
+            setTotal();
+            e.preventDefault()
+        });
+        //数量减少操作
+        $(".amount-down").click(function(e){
+            var c1=parseInt($(this).next().val());
+            var b1=parseInt($("#num_total").text());
+            $("#num_total").text(b1-1)
+            if(c1>=1){
+                $(this).next().val(c1-1);
+            };
+            setTotal();
+            e.preventDefault()
+        });
+
+        function setTotal(){
+            //  var total=0;
+            // // 遍历合计件数
+            //  t.each(function(index,ele){
+            //      total+=parseInt($(ele).val());
+            //       alert(total)
+            //   });
+            //  $("#num_total").html(total);
+
+
+            var s=0;
+            $(".Order_book ul li").each(function(){
+                s+=parseInt($(this).find('input[class*=C-Number]').val())*parseFloat($(this).find('.C-price b').text());
+            });
+            $("#total").html(s.toFixed(2));
+
+
+        }
+        // 初始化
+        setTotal();
+
+    })
+
+
+</script>

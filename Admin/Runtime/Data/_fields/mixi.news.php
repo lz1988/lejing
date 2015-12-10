@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'title', 2 => 'type_id', 3 => 'icon', 4 => 'source', 5 => 'news_url', 6 => 'is_home', 7 => 'content', 8 => 'sort', 9 => 'create_time', 10 => 'update_time', 11 => 'seo_key', 12 => 'seo_desc', 13 => 'status', 14 => 'click_num', 15 => 'is_del', '_autoinc' => true, '_pk' => 'id', ); ?>

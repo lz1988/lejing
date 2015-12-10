@@ -1,0 +1,90 @@
+<form name="baseform" method="post" action="/user/edit_perfect_profile">
+<div class="header">
+    <h1>蜜小罐</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <h2 class="My_xmg">完善会员资料</h2>
+    <div class="menber">
+        <div class="menber_top">
+            <div class="menber_card">
+                <dl>
+                    <dt>姓名</dt>
+                    <dd><input type="text" value="{$userinfo.nick_name}" name="nickname" /></dd>
+                </dl>
+                <dl>
+                    <dt>QQ</dt>
+                    <dd><input type="text" value="{$userinfo.qq}" name="qq"  /></dd>
+                </dl>
+                <dl>
+                    <dt>性别</dt>
+                    <dd>
+                        <select name="sex">
+                            <option value="0" <if condition="$userinfo.sex eq '0'"> selected </if> >男</option>
+                            <option value="1" <if condition="$userinfo.sex eq '1'"> selected </if> >女</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>生日</dt>
+                    <dd id="birthday_container">
+                        <span style="white-space:pre">  </span><select name="year"></select>
+                        <span style="white-space:pre">  </span><select name="month"></select>
+                        <span style="white-space:pre">  </span><select name="day"></select>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>手机</dt>
+                    <dd>
+                        <input type="text" name="tel" value="{$userinfo.tel}" />
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="menber_card_bot">
+        <if condition="$count eq '0'">
+        <input type="submit" class="Ok" name="submit" value="确认提交"/>
+        </if>
+    </div>
+
+
+</div><!--main 结束 -->
+</form>
+<script src="__PUBLIC__/Home/js/birthday.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("select[name='year']").val("{$userinfo.nian}");
+        $("select[name='month']").val("{$userinfo.yue}");
+        $("select[name='day']").val("{$userinfo.ri}");
+
+        $("form").submit(function(){
+            var nick_name = $("input[name='nick_name']").val();
+            if (nick_name.length == 0)
+            {
+                alert("请填写真实姓名！");
+                return false;
+            }
+
+            var qq = $("input[name='qq']").val();
+            if (qq.length == 0)
+            {
+                alert("请填写qq！");
+                return false;
+            }
+
+            var tel = $("input[name='tel']").val();
+            if (tel.length == 0)
+            {
+                alert("请填写手机号码！");
+                return false;
+            }
+        })
+    })
+
+    $("#birthday_container").birthday();
+</script>
+
+

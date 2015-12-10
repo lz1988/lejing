@@ -1,0 +1,108 @@
+
+<div class="header">
+    <h1>用户中心</h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div><!--页眉 结束-->
+<div class="main">
+    <h2 class="My_xmg">我的蜜小罐</h2>
+    <div class="menber">
+        <div class="menber_top">
+            <ul>
+                <li> {$Think.session.username}</li>
+                <li> 会员卡号：<span>{$vip_card}</span></li>
+                <li> 会员等级：<span class="M_level">{$vip_level.name}</span></li>
+            </ul>
+        </div>
+        <div class="menber_body">
+            <ul>
+                <li>我的余额:<span>{$user_account}元</span></li>
+                <li>我的优惠券:<span>{$coupon_num}张</span></li>
+                <li>我的积分:<span>{$user_score}分</span></li>
+                <if condition="$birth_gift neq ''">
+                <li>生日大礼包:<span>{$birth_gift['birth_name']}</span></li>
+                </if>
+            </ul>
+        </div>
+        <div class="menber_bot">
+
+            <div class="demo">
+                <div id="firstpane" class="menu_list">
+                    <a href="/user/perfect_profile"><p class="menu_head current">完善资料领取生日大礼包</p></a>
+                   <!-- <div class="menu_body">
+                        <li>恭喜您获得了以下礼包</li>
+                        <li>生日大礼包：￥100</li>
+                    </div>-->
+                    <p class="menu_head">会员等级</p>
+                    <div class="menu_body">
+                       <!-- <li>恭喜您获得了以下礼包</li>
+                        <li>生日大礼包：￥100</li>-->
+                        <li>
+                            详情说明：<br/>
+                            *有效期至2015.4.30;<br/>
+                            *会员关注即成为红心会员，每消费100元，增加1颗红心;<br/>
+                            *会员累计消费满500元可升级为钻石会员；<br/>
+                            *会员累计消费满1000元可升级为皇冠会员;<br/>
+                            *会员累计消费满1500元可升级为金皇冠卡；<br/>
+
+                        </li>
+                    </div>
+                    <p class="menu_head">会员专享消费返积</p>
+                    <div class="menu_body">
+                       <li>
+                           详情说明：<br/>
+                           *有效期至2015.4.30;<br/>
+                           *积分比例：每消费1元=1积分；、*积分兑换礼品活动以微信公众服务号公告为准；<br/>
+                           *积分有效期以自然年为单位，到期未兑换，积分清零；<br/>
+                           *特权部分不开发票，不兑现金；<br/>
+                           *无特殊说明，该项特权不与店内其他优惠同时使用。
+                       </li>
+                    </div>
+                    <p class="menu_head">分充值返利</p>
+                    <div class="menu_body">
+                        <li>详情说明：<br/>
+                            *有效期至2015.4.30;<br/>
+                            *充值200元，送30元；<br/>
+                            *充值500元，送100元；<br/>
+                            *赠送部分不开发票，不兑现金；<br/>
+                            *无特殊说明，该项特权不与店内其他优惠同时使用
+                        </li>
+
+                    </div>
+                    <p class="menu_head">每周三会员专享日</p>
+                    <div class="menu_body">
+                        <li>详情说明：<br/>
+                            *有效期至2015.4.30;<br/>
+                            *普通会员专享95折优惠（不含配送运费）；<br/>
+                            *银卡会员专享9折优惠（不含配送运费） ；<br/>
+                            *金卡会员专享88折优惠（不含配送运费） ；<br/>
+                            *钻石卡会员专享85折优惠（不含配送运费） ；<br/>
+                            *特权部分不开发票，不兑现金；<br/>
+                            *无特殊说明，该项特权不与店内其他优惠同时使用。<br/>
+                        </li>
+
+                    </div>
+                </div>
+            </div><!--demo end-->
+
+        </div>
+    </div>
+
+</div><!--main 结束 -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        //幻灯片元素与类“menu_body”段与类“menu_head”时点击
+        $("#firstpane p.menu_head").click(function(){
+            $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+            $(this).siblings().removeClass("current");
+        });
+        //滑动与类“menu_body”的元素，当鼠标悬停段
+        $("#secondpane .menu_body:eq(0)").show();
+        $("#secondpane p.menu_head").mouseover(function(){
+            $(this).addClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+            $(this).siblings().removeClass("current");
+        });
+    });
+</script>
+
+

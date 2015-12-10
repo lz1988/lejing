@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'shop_id', 2 => 'input_date', 3 => 'orderno', 4 => 'zhaiyao', 5 => 'baoxian_fee', 6 => 'bangong_fee', 7 => 'tongxun_fee', 8 => 'chailv_fee', 9 => 'fuli_fee', 10 => 'zhaodai_fee', 11 => 'car_fee', 12 => 'peixun_fee', 13 => 'zhengjian_fee', 14 => 'zhijian_fee', 15 => 'gongguan_fee', 16 => 'zhejiu_fee', 17 => 'guanli_fee', 18 => 'gongtan_fee', 19 => 'qita_fee', 20 => 'creater', 21 => 'create_time', 22 => 'reviewer', 23 => 'checker', 24 => 'remark', '_autoinc' => true, '_pk' => 'id', ); ?>

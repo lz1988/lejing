@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'site_title', 2 => 'site_beian', 3 => 'site_copyright', 4 => 'site_keywords', 5 => 'site_description', 6 => 'site_key_link', 7 => 'header_img', 8 => 'domain_path', 9 => 'allow_ip', 10 => 'page_num', 11 => 'db_host', 12 => 'db_name', 13 => 'db_user', 14 => 'db_pwd', 15 => 'db_port', 16 => 'db_prefix', 17 => 'replay_info', '_autoinc' => true, '_pk' => 'id', ); ?>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>栏目设置</title>
+<meta name="author" content="OEdev">
+<script src="__ROOT__/Public/Admin/js/jquery-1.6.js"></script>
+<script src="__ROOT__/Public/Admin/js/public.js"></script>
+<link type="text/css" rel="stylesheet" href="__ROOT__/Public/Admin/css/admin.css">
+</head>
+<body>
+<div class="main-wrap">
+  <div class="path"><p>{$cur_menu}</p></div>
+  
+  <div class="main-cont">
+    <h3 class="title">
+	<a href="__APP__/Advert/advert_add/" class="btn-general" {$advert_add}><span>添加广告</span></a>
+	
+	{$cur_title}
+	</h3>
+	<div class="search-area ">
+	<form id="" name="formfind" action="" method="GET">
+	<div class="item">
+	<label>广告标题：</label>
+	<input type="text" name="title" class="input-150" value="{$title}" id="title" />
+	<label>广告组：</label>
+	        <select name="type_id" id="type_id" />
+                  <option value="0">--请选择--</option>
+                  <foreach name="adverttype_list" item="name">
+	              <option value="{$name.type_id}" <if condition="$name.type_id eq $type_id">selected</if>>{$name.type_name}</option>
+	              </foreach>
+             </select>
+	<label>状态：</label>
+	 <select name="status" id="status" />
+                  <option value="2" <if condition="$status eq 2">selected</if>>--全部--</option>
+                  <option value="1" <if condition="$status eq 1">selected</if>>开启</option>
+	              <option value="0" <if condition="$status eq 3">selected</if>>关闭</option>
+	              
+             </select>
+	
+	<input class="button_s" type="submit" name="findsub" value="搜 索">
+	<input class="button_s" type="button" name="findsub" value="显示所有" onclick="document.location='__APP__/{$cur_url}'">
+	</div>
+	</form>
+	</div>
+	<form action="" method="POST" name="orgtype" />
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table" align="center">
+	  <thead class="tb-tit-bg">
+	  <tr>
+	    <th width="4%"><div class="th-gap">ID</div></th>
+	    <th width="8%"><div class="th-gap">广告标题</div></th>
+		<th width="10%"><div class="th-gap">广告组</div></th>
+		<th width="10%"><div class="th-gap">缩略图</div></th>
+		<th width="10%"><div class="th-gap">大图</div></th>
+		<th width="28%"><div class="th-gap">开启时间</div></th>
+		<th width="3%"><div class="th-gap">状态</div></th>
+		<th width="3%"><div class="th-gap">排序</div></th>
+		<th width="15%"><div class="th-gap">操作</div></th>
+	  </tr>
+	  </thead>
+	  <tfoot class="tb-foot-bg"></tfoot>
+	  <tbody  id="tableClass">
+	  <foreach name="advert_list" item="name">
+	  <tr onmouseover="overColor(this)" onmouseout="outColor(this)">
+	    <td align="left" class="hback">
+	       <input type="checkbox" <?php if(in_array($name['id'],$notdel) OR $notdel=='ALL'){echo "disabled";} ?>  value="{$name.id}" name="id[]">{$name.id}
+	    </td>
+	    <td align="center" class="hback">{$name.title}</td>
+	    <td align="center" class="hback">{$name.type_name}</td>
+		<td align="center" class="hback"><if condition="$name.small_icon eq ''">无<else /><a href="{$advertimgurl}{$name.small_icon}" target="_blank"><img src="{$advertimgurl}{$name.small_icon}" width="20" /></a></if></td>
+		<td align="center" class="hback"><if condition="$name.large_icon eq ''">无<else /><a href="{$advertimgurl}{$name.large_icon}" target="_blank"><<if condition="substr(strrchr($name['large_icon'],'.'),1) eq 'swf'">embed<else/>img</if> src="{$advertimgurl}{$name.large_icon}" width="60" height="40" /></a></if></td>
+		<td align="center" class="hback"><if condition="$name.open_time lt 10">未设时间<else />{$name.open_time|date='Y-m-d H:i:s',###}</if></td>
+		<td class="hback">
+		   <if condition="($name['status'] eq '1')">
+			<img id="flag8" alt="有效" src="__ROOT__/Public/Admin/images/yes.gif" onclick="javascript:fetch_ajax(&#39;flag&#39;,&#39;8&#39;);" style="cursor:pointer;">	
+			<else />
+			<img id="flag8" alt="无效" src="__ROOT__/Public/Admin/images/no.gif" onclick="javascript:fetch_ajax(&#39;flag&#39;,&#39;8&#39;);" style="cursor:pointer;">	
+		  </if>
+		</td>
+	 
+		<td align="center">
+	    	<input type="hidden" name="sortid[]" value="{$name.id}" /><input type="text" class="textcenter" name="sort[]" value="{$name.sort}" size="3" />
+		</td> 
+		<td align="center" class="hback">
+		<!-- 添加子栏目 -->
+			<a href="__APP__/Advert/advert_edit/{$name.id}/" class="icon-edit" {$advert_edit}>编辑</a>
+			&nbsp;
+			<a {$advert_del} href="__APP__/Advert/advert_del/{$name.id}/" onclick="{if(confirm(&#39;确定要删除吗？一旦删除无法恢复！&#39;)){return true;} return false;}" class="icon-del" <?php if(in_array($name['id'],$notdel) OR $notdel=='ALL'){echo "style='display:none;'";} ?>>删除</a>
+		</td>
+	  </tr>
+	  </foreach>
+	  	   
+	  <tr>
+	    <td align="center" colspan="" class="hback"><input type="checkbox" name="del_idall" onclick="check_all('id');" value=""/>选择</td>
+	    <td align="left" colspan="8" class="hback"><input {$adminuser_del} type="button" class="button" value="删除" onclick="check_from('删除','__APP__/Advert/advert_del/')" name="delall" id="delall"/></td>
+	    
+	  </tr>	
+	   
+	  	</tbody></table>
+	  </form>
+		<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin-top:10px;">
+	  <tbody><tr>
+		<td align="center" class="page">{$page}</td>
+	  </tr>
+	</tbody></table>
+	  </div>
+</div>
+
+<!--           以下为子栏目操作页面          -->
+ 
+</body></html>

@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'type_id', 1 => 'type_name', 2 => 'url', 3 => 'pid', 4 => 'sort', 5 => 'status', 6 => 'is_del', 7 => 'keywords', 8 => 'description', 9 => 'click_num', '_autoinc' => true, '_pk' => 'type_id', ); ?>

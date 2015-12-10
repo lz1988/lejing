@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+<title>乐境微信管理系统</title>
+<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+<script>
+$(function(){
+	var postdate = "{$Think.post.postdate}";
+	if (postdate){
+		$("#postdate").val(postdate);
+	}
+})
+</script>
+</head>
+
+<body class="reg_body">
+<header class="h_reg">
+	欢迎你：{$Think.session.username} &nbsp;&nbsp; 【{$Think.session.nickname}】&nbsp;&nbsp;<a href="__APP__/index/logout">退出</a>
+</header>
+<section class="main_reg">
+
+	<div class="h_search">
+	<form name="form1" method="post" action="">
+	日期：<select name="postdate" id="postdate">
+	<volist name="date_arr" id="vo">
+	<option value="{$vo}" <if condition="$vo eq $datenow"> selected="selected" </if> >{$vo}</option>
+	</volist>
+	</select>
+	<input type="submit" name="submit" value="搜索"/>
+	</form>
+	</div>
+	
+	<table border="1" width="100%">
+	<tr>
+	<td width="15%">分店<br/>名称</td>
+	<td>收入<br/>合计</td>
+	<td>成本<br/>合计</td>
+	<td>管理<br/>费用</td>
+	<td>销售<br/>费用</td>
+	<td>员工<br/>工资</td>
+	<td>物流<br/>费用</td>
+	<!-- <td>查看<br/>明细</td> -->
+	</tr>
+	<tr>
+	
+	
+	<volist name="rs" id="vo">
+	<tr>
+	<td>
+	<if condition="$vo.zuizhong_mode eq '0'">
+	<a href="__APP__/index/view?shop_id={$vo.shop_id}&input_date={$datenow}">{$vo.shop_name}</a>
+	<else/>
+	{$vo.shop_name}
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_incomestatement_mode eq '0'">
+		<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=1">{$vo.sum_incomestatement}</a>
+	<else/>
+		0
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_cost_mode eq '0'">
+	<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=2">{$vo.sum_cost}<a/>
+	<else/>
+	0
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_manage_fee_mode eq '0'">
+	<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=3">{$vo.sum_manage_fee}</a>
+	<else/>
+	0
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_sell_fee_mode eq '0'">
+	<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=4">{$vo.sum_sell_fee}</a>
+	<else/>
+	0
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_employee_pay_mode eq '0'">
+	<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=5">{$vo.sum_employee_pay}</a>
+	<else/>
+	0
+	</if>
+	</td>
+	<td>
+	<if condition="$vo.sum_express_fee_mode eq '0'">
+	<a href="__APP__/index/detail?shop_id={$vo.shop_id}&input_date={$datenow}&t=6">{$vo.sum_express_fee}</a>
+	<else/>
+	0
+	</if>
+	</td>
+	
+<!-- 	<td><a href="">查看</a></td>
+ -->	</tr>
+	</volist>
+	
+	<tr>
+	<td><font color="#dc143c">总计</font></td>
+	<td>{$_sum_incomestatement}</td>
+	<td>{$_sum_cost}</td>
+	<td>{$_sum_manage_fee}</td>
+	<td>{$_sum_sell_fee}</td>
+	<td>{$_sum_employee_pay}</td>
+	<td>{$_sum_express_fee}</td>
+	</tr>
+	</table>
+</section>
+</body>
+</html>

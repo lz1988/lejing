@@ -1,0 +1,292 @@
+<meta charset="utf-8" />
+<script src="__ROOT__/Public/js/jquery-1.8.2.js" type="text/javascript"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/jquery.form.js"></script>
+<style>
+.text {
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.ax_check {
+	color: #333333;
+	font-family: "Arial Normal", "Arial";
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-align: left;
+	margin-right: 10px;
+	height:30px;
+} 
+.imgtu {
+	width: 672px;
+	height: 242px;
+	margin-right: 0.5px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	float:left;
+	background-color: #E4E4E4;
+	border:1px solid #E4E4E4;
+}
+
+.imgtu_title {
+    font-family: "微软雅黑 Regular","微软雅黑";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 30px;
+    left: 20px;
+    position: relative;
+    top: 20px;
+    width: 80px;
+	float:left;
+	background: #FFFFFF;//背景色  
+}
+.imgtu_title1 {
+    font-family: "微软雅黑 Regular","微软雅黑";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 30px;
+    left: 20px;
+    position: relative;
+    top: 20px;
+    width: 80px;
+	float:left;
+	background: #E4E4E4;//背景色  
+}
+.imgtu_con {
+	width: 680px;
+	height: 190px;
+	margin-top: 50px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	position: relative;
+	background-color: #FFFFFF;
+	border-left:1px solid #E4E4E4;
+}
+.imgtu_con_li {
+	width: 120px;
+	height: 150px;
+	padding-left:15px;
+	text-align: center;
+	font-family: "微软雅黑 Regular", "微软雅黑";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	position: relative;
+	background-color: #FFFFFF;
+	float:left;
+}
+.imgtu_con_li_top {
+	width: 102px;
+	height: 102px;
+	top:20px;
+	position: relative;
+	border:1px solid #E4E4E4;
+}
+.imgtu_con_li_bottom {
+	width: 102px;
+	height: 50px;
+	margin-top:30px;
+	text-align: center;
+	position: relative;
+}
+.btn{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;*display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;*line-height:20px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background-color:#5bb75b;border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+.btn input {position: absolute;top: 0; right: 0;margin: 0;border: solid transparent;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+
+/*弹窗*/
+.r_bg{ width: 100%; height: 100%;position: fixed; top: 0; left: 0; z-index: 67; display: none;}
+.relation_box{width: 600px; height: auto;  margin: 0 auto; margin-top: 10%;  box-shadow: 0px 0px 15px #ddd}
+.relation_box .widget{width: 600px; height: auto;background: #f2f2f2 }
+.relation_box .widget-foot{ border: none;}
+.relation_box td span{ color: #ff0000}
+.relation_box table.table-bordered{ border-top: 1px solid #ddd}
+.s_top{ margin-top: 10px;}
+
+.relation_box .widget{ margin: 0 0;}
+.relation_box .form-group{ float: left;}
+.relation_box .col-lg-4{ width: 80px; padding-right: 0; padding-top: 5px;}
+.relation_box .col-lg-8{ width: 150px;}
+
+/*属性*/
+.attrblock{list-style-type:none;color: #333333;width:100%;}
+.attrblock li {width:100px; height:40px; line-height:40px; text-align:center;float:left;}
+.attrblock li label{padding:0; margin:0;}
+.attrblock li .cbox {width:25px;height:40px;float:left;}
+.attrblock li .cbox input{margin:0 0;}
+.attrblock li .gcolor{width:15px; height:15px; float:left; padding: 5px 0;}
+.attrblock li .itext{font-size:14px;font-style: normal;font-weight: 400;width:60px;float:left}
+</style>
+<link href="__ROOT__/Public/Admin/css/list.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__ROOT__/Public/Admin/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.css" />
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.js"></script>
+<script src="__ROOT__/Public/Admin/js/formvalidator/formValidator-4.1.1.js" type="text/javascript" charset="UTF-8"></script> 
+<script src="__ROOT__/Public/Admin/js/message/message_add.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+
+
+   KindEditor.ready(function(K) {
+			var editor1 = K.create('textarea[name="detail"]', {
+				cssPath : '__ROOT__/Public/Admin/kindeditor/plugins/code/prettify.css',
+				uploadJson : '__ROOT__/Public/Admin/kindeditor/php/upload_json.php',
+				fileManagerJson : '__ROOT__/Public/Admin/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterBlur : function() {
+				this.sync();
+				K.ctrl(document, 13, function() {
+				K('form[name=myform]')[0].submit();
+				});
+				K.ctrl(this.edit.doc, 13, function() {
+				K('form[name=myform]')[0].submit();
+				});
+				}
+			});
+			prettyPrint();
+		});
+</script>
+
+<script type="text/javascript">
+    //上传图片
+	function img_upload(fileupload,showimgid,form){
+		var showimg = $('#'+showimgid);
+		if($("#"+form).length<=0){
+			$("#"+fileupload).wrap('<form id="'+form+'" action="{:U('Item/action')}" method="post" enctype="multipart/form-data"></form>');
+		}
+		
+    	$("#"+fileupload).unbind().change(function(){
+    		$('#'+form).ajaxSubmit({
+				dataType:  'json',
+				success: function(data) {
+					var img = "/Uploads/Item/"+data.pic;
+					if(fileupload=="fileupload0"){
+						showimg.html("<img src='"+img+"' style='width:620px;'>");
+					}else if(fileupload.indexOf("colorupload")>=0){
+						showimg.html("<img src='"+img+"' style='width:30px;height:30px;'>");
+					}else{
+						showimg.html("<img src='"+img+"' style='width:100px;height:100px;'>");
+					}
+					
+					$("#"+fileupload+"_pic").val(img);
+				},
+				error:function(xhr){
+					showimg.html("上传失败");
+				}
+			});
+		});
+	}
+
+	// 载入图片
+	function loadpic(id,pic,mode){
+		//alert(fileupload+showimg);
+		var showimg = $('#showimg'+id);
+		if(mode==1){
+			showimg.html("<img src='"+pic+"' style='max-width:620px;'>");
+		}else if(mode==2){
+			showimg.html("<img src='"+pic+"' style='width:100px;height:100px;'>");
+		}
+		$("#fileupload"+id+"_pic").val(pic);
+		
+	}
+	
+	
+</script>
+<div class="currentposition">
+    <div>{$cur_menu} > 消息群发</div>
+</div>
+<div class="addclass">
+<div class="addtopheight">&nbsp;</div>
+<form name="upload" id="upload" action="{:U('code/code_edit')}" method="POST" onsubmit="return check_from()" action="" enctype="multipart/form-data">
+<input type="hidden" name="id" value="{$id}" />
+<table width="100%" class="addsearchClass" border="0" cellpadding="0" cellspacing="0">
+
+   <tr>
+       <td height="10" align="right" class="left_txt2">标题：</td>
+       <td>
+           {$Think.post.title}
+       </td>
+   </tr>
+   <tr>
+       <td height="10" align="right" class="left_txt2">二维码：</td>
+       <td>
+           <img src="{$images}" width="150" />
+       </td>
+   </tr>
+   <tr>
+       <td height="10" align="right" class="left_txt2">选择要回复的消息：</td>
+       <td>
+           <select name="info_id">
+           	   <option value="0">－－请选择－－</option>
+               <foreach name="info_list" item="list">
+               <option value="{$list.id}">{$list.title}</option>
+               </foreach>
+           </select>
+       </td>
+   </tr>
+   
+   <tr>
+       <td height="10" align="right" class="left_txt2">成为指定的会员等级：</td>
+       <td>
+           <select name="vip_id">
+           	   <option value="0">－－请选择－－</option>
+               <foreach name="vip_list" item="list">
+               <option value="{$list.id}">{$list.name}</option>
+               </foreach>
+           </select>
+       </td>
+   </tr>
+   
+   <tr>
+       <td height="10" align="right" class="left_txt2">给粉丝打标签：</td>
+       <td>
+           <select name="label_id">
+           	   <option value="0">－－请选择－－</option>
+               <foreach name="label_list" item="list">
+               <option value="{$list.id}">{$list.name}</option>
+               </foreach>
+           </select>
+       </td>
+   </tr>
+   
+   <tr>
+       <td height="10" align="right" class="left_txt2">匹配关键词：</td>
+       <td>
+           <input type="text" name="keywords" value="" />
+       </td>
+   </tr>
+   
+   <tr>
+       <td colspan="2">
+          <div class="addoperation">
+          <input type="submit" class="buttonsave" value="生成渠道二维码" name="sub_authority" />
+          &nbsp;
+          <input type="reset" class="buttoncancel" value="取消" onclick="javascript:history.go(-1);" name="B12" />
+          </div>
+       </td> 
+   </tr>
+
+</table>
+</form>
+<div>&nbsp;</div>
+</div>
+<script type="text/javascript">
+function setnum(val){
+  	 var num=600-val.length;
+  	 if(num<=0){
+  	 	val=val.substring(0,600);
+  	 	$('#send_content').val(val);
+  	 }
+  	 $('#setnum').html('还可以输入'+num+'字');
+  }
+</script>

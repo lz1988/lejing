@@ -1,0 +1,76 @@
+
+<!--<div class="header">
+    <h1></h1>
+    <a href="#" class="btn_left"></a>
+    <a href="#" class="btn_right"></a>
+</div>--><!--页眉 结束-->
+<div class="main">
+    <div class="cart_top">
+        <h2>购物车（堂食）</h2>
+        <p>支付订单：支付成功后，<br/>
+            我们马上为您送上甜品</p>
+    </div>
+    <div class="cart_body">
+        <div class="cart_body_A">
+            <dl>
+                <dt>订单号：<span>{$orders_list.orders_no}</span><!--<a href="#">修改</a>--></dt>
+                <dd>点单时间：{$orders_list.create_time|date="Y/m/d H:i:s",###}</dd>
+            </dl>
+        </div>
+        <div class="cart_body_B">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="th">菜品</td>
+                    <td class="th">数量</td>
+                    <td class="th">￥单价</td>
+                </tr>
+                <foreach name="oi_list" item="vo">
+                <tr>
+                    <td>{$vo.item_name}</td>
+                    <td>{$vo.buy_num}份</td>
+                    <td>￥{$vo.buy_price}</td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+        </div>
+        <div class="Subtotal">小计：<span> ￥{$total_price}</span></div>
+        <dl class="table_no">
+            <dt>就餐台号</dt>
+            <dd><input type="text" class="table_no_Input"></dd>
+        </dl>
+    </div>
+    <div class="pay_for">
+       <dl class="the_menber_pay">
+           <!-- <dt>使用会员卡支付</dt>
+            <dd>会员卡-{$arr_money.card_no}（￥<span>{$arr_money.card_money}</span>）</dd>
+            <a href="javascript:location.reload()">刷新余额</a>-->
+            <a href="/user/member_recharge">会员充值</a>
+        </dl>
+        <div style="clear:both"></div>
+        <!--<div class="menber_pay_BTn"><a href="/user/cart_pay/orders_id/{$orders_list.orders_id}" class="PayBtn">使用会员卡支付</a></div>-->
+        <dl >
+            <dt>前往微信支付</dt>
+            <dd><a href="/user/pay/orders_id/{$orders_list.orders_id}" class="PayBtn">前往微信支付</a></dd>
+        </dl>
+		<br/>
+		<!--<dl >
+            <dt>前往支付宝支付</dt>
+            <dd><a target="_blank" href="https://www.alipay.com/cooperate/gateway.do?_input_charset=utf-8&extend_param=isv%5Esh22&logistics_fee=0&logistics_payment=BUYER_PAY_AFTER_RECEIVE&logistics_type=EXPRESS&notify_url=http%3A%2F%2Fwww.eyeku.com%2Fmobile%2Frespond.php%3Fcode%3Dalipay&out_trade_no=2015041050454401&partner=2088811585827708&payment_type=1&price=398.00&quantity=1&return_url=http%3A%2F%2Fwww.eyeku.com%2Fmobile%2Frespond.php%3Fcode%3Dalipay&seller_email=eyeku888%40163.com&service=create_direct_pay_by_user&subject=2015041050454&sign=b4919ef6804db253a4b7556673c333d9&sign_type=MD5
+" class="PayBtn">前往支付宝支付</a></dd>
+        </dl>-->
+    </div>
+</div><!--main 结束 -->
+<footer>
+    <ul class="H_bottom">
+        <li><a href="#"  class="menu onLight"></a></li>
+        <li><a href="#" class="cart"></a></li>
+        <li><a href="#" class="order"></a></li>
+        <li><a href="#" class="mxg"></a></li>
+    </ul>
+    <a class="backUp" href="#"></a>
+</footer><!--页尾 结束-->
+</body>
+</html>
+

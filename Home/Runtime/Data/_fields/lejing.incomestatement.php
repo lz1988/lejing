@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'input_date', 2 => 'shop_id', 3 => 'price', 4 => 'discount', 5 => 'price_change', 6 => 'int_price_change', 7 => 'operating_income', 8 => 'int_operating_income', 9 => 'subsidy_income', 10 => 'int_subsidy_income', 11 => 'return_amount', 12 => 'int_return_amount', 13 => 'creater', 14 => 'create_time', 15 => 'revewer', 16 => 'checker', 17 => 'remark', '_autoinc' => true, '_pk' => 'id', ); ?>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$cur_title}</title>
+    <meta name="author" content="OEdev">
+    <script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+    <script src="__ROOT__/Public/Admin/js/public.js"></script>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/Admin/css/admin.css">
+    <script src="__PUBLIC__/Admin/js/jquery.ocupload-1.1.2.js"></script>
+
+    <script src="__PUBLIC__/Admin/js/jquery.dragndrop.js"></script>
+
+    <script src="__PUBLIC__/Admin/js/jquery.msgbox.js"></script>
+
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.msgbox.css"/>
+
+    <script>
+
+
+    </script>
+</head>
+<body>
+<div class="main-wrap">
+    <div class="path"> <div>{$cur_menu} > {$cur_title}</div></div>
+
+    <div class="main-cont">
+        <h3 class="title">
+            图库列表
+        </h3>
+
+        <div class="search-area ">
+            <form id="" name="formfind" action="" method="GET">
+                <div class="item">
+                    <label>{$pic_name}-图库 ｜ +<a href="/admin.php/lunbo/addmod">增加图片</a></label>
+                </div>
+            </form>
+        </div>
+        <form action="" method="POST" name="orgtype"/>
+        <foreach name="rs" item="list">
+            <table width="300" border="0" cellpadding="0" cellspacing="0" class="table"
+                   style="width:280px;height:300px;float:left;margin:20px;" align="center">
+                <thead class="tb-tit-bg">
+                <tr height="10">
+                    <th width="100%">
+                        <div class="th-gap" style="height:10px;line-height:10px;">
+
+                            <!-- <a href="__APP__/Attachments/Attachments_edit/id/{$list.id }">编辑</a>&nbsp;-->
+                            <a href="__APP__/lunbo/del/id/{$list.id }">删除</a>
+                            <!--onclick="{if(confirm('确定要删除吗？一旦删除无法恢复！')){return true;} return false;}-->
+                        </div>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th width="100%">
+                        <img src="{$list.lunbo_images}" width="270"/>
+                    </th>
+                </tr>
+
+
+                </thead>
+            </table>
+        </foreach>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'menu_id', 1 => 'func_name', 2 => 'menu_title', 3 => 'status', 4 => 'remark', 5 => 'sort', 6 => 'pid', 7 => 'level', 8 => 'url', 9 => 'create_time', '_autoinc' => true, '_pk' => 'menu_id', ); ?>
